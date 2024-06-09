@@ -40,4 +40,4 @@ ENTRYPOINT ["java", "-jar", "app.jar", "-XX:+UseZGC", "-XX:+ZGenerational", "-Xl
 
 EXPOSE 8080
 
-LABEL org.opencontainers.image.source="https://github.com/BenSlabbert/vertx-dagger-app"
+LABEL org.opencontainers.image.source="https://github.com/BenSlabbert/vertx-dagger-iam"

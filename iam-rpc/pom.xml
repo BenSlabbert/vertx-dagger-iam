@@ -13,7 +13,7 @@
   <properties>
     <finalName>iam-rpc</finalName>
     <launcher.class>github.benslabbert.vertxdaggercommons.launcher.CustomLauncher</launcher.class>
-    <main.verticle>github.benslabbert.vertxdaggeriam.verticle.DefaultVerticle</main.verticle>
+    <main.verticle>github.benslabbert.vertxdaggeriamrpc.verticle.DefaultVerticle</main.verticle>
     <exec.mainClass>${launcher.class}</exec.mainClass>
 
     <!--vertx plugin-->

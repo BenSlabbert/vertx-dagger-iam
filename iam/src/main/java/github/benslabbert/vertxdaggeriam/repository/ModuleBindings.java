@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.multibindings.IntoSet;
 
 @Module
-interface RepositoryModuleBindings {
+interface ModuleBindings {
 
   @Binds
   UserRepository redisDB(RedisDB redisDB);

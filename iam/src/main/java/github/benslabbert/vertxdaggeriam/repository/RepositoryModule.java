@@ -3,7 +3,7 @@ package github.benslabbert.vertxdaggeriam.repository;
 
 import dagger.Module;
 
-@Module(includes = RepositoryModuleBindings.class)
+@Module(includes = ModuleBindings.class)
 public interface RepositoryModule {
 
   UserRepository userRepository();

@@ -32,7 +32,7 @@ class RedisDB implements UserRepository, AutoCloseable {
     this.redisAPI
         .ping(List.of(""))
         .onFailure(err -> log.error("failed to ping redis", err))
-        .onSuccess(resp -> log.info("pinged redis"));
+        .onSuccess(ignore -> log.info("pinged redis"));
   }
 
   @Override
@@ -94,8 +94,8 @@ class RedisDB implements UserRepository, AutoCloseable {
 
               return Future.<Void>succeededFuture();
             })
-        .compose(dto -> updateRefreshToken(username, refreshToken))
-        .onSuccess(resp -> log.info("user logged in"));
+        .compose(ignore -> updateRefreshToken(username, refreshToken))
+        .onSuccess(ignore -> log.info("user logged in"));
   }
 
   @Override
@@ -121,8 +121,8 @@ class RedisDB implements UserRepository, AutoCloseable {
 
               return Future.<Void>succeededFuture();
             })
-        .compose(dto -> updateRefreshToken(username, newRefreshToken))
-        .onSuccess(resp -> log.info("user refreshed"));
+        .compose(ignore -> updateRefreshToken(username, newRefreshToken))
+        .onSuccess(ignore -> log.info("user refreshed"));
   }
 
   @Override

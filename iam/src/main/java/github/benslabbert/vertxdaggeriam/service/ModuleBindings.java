@@ -6,7 +6,7 @@ import dagger.Module;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.IamAuthApi;
 
 @Module
-interface ServiceModuleBindings {
+interface ModuleBindings {
 
   @Binds
   IamAuthApi createUserService(IamAuthApiImpl iamAuthApi);

@@ -6,7 +6,7 @@ import dagger.Module;
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.IamRpcService;
 
 @Module
-interface ServiceModuleBindings {
+interface ModuleBindings {
 
   @Binds
   TokenService bindsTokenService(TokenServiceImpl tokenService);

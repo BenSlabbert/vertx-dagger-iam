@@ -22,8 +22,6 @@ public interface Provider {
 
   IamRpcService iamRpcService();
 
-  Config config();
-
   RpcVerticle rpcVerticle();
 
   @Component.Builder

@@ -4,7 +4,7 @@ package github.benslabbert.vertxdaggeriamrpc.service;
 import dagger.Module;
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.IamRpcService;
 
-@Module(includes = ServiceModuleBindings.class)
+@Module(includes = ModuleBindings.class)
 public interface ServiceModule {
 
   IamRpcService iamRpcService();

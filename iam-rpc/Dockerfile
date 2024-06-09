@@ -38,4 +38,4 @@ COPY target/iam-rpc.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar", "-XX:+UseZGC", "-XX:+ZGenerational", "-Xlog:gc*", "-Xmx32M", "-Xms32M", "-Djava.net.preferIPv4Stack=true"]
 
-LABEL org.opencontainers.image.source="https://github.com/BenSlabbert/vertx-dagger-app"
+LABEL org.opencontainers.image.source="https://github.com/BenSlabbert/vertx-dagger-iam"

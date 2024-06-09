@@ -6,6 +6,10 @@ M := "mvn"
 build: fmt
 	${M} install
 
+.PHONY: validate
+validate:
+	${M} validate
+
 .PHONY: deploy
 deploy: fmt
 	${M} deploy

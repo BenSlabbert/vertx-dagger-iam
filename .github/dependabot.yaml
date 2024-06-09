@@ -45,6 +45,11 @@ updates:
   registries:
   - "vertx-dagger-bom"
   - "git-version-extension"
+  - "vertx-dagger-commons"
+  - "vertx-dagger-codegen"
+  - "vertx-dagger-starter"
+  - "vertx-dagger-app-api"
+  - "vertx-json-writer"
   labels:
   - "dependencies"
 - package-ecosystem: "github-actions"

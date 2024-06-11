@@ -1,21 +1,22 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriam.verticle;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
-
 import github.benslabbert.vertxdaggercommons.auth.NoAuthRequiredAuthenticationProvider;
 import github.benslabbert.vertxdaggercommons.closer.ClosingService;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.future.FutureUtil;
+import github.benslabbert.vertxdaggercommons.future.MultiCompletePromise;
 import github.benslabbert.vertxdaggeriam.web.route.handler.UserHandler;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.healthchecks.HealthCheckHandler;
 import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
+import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.redis.client.RedisAPI;
 import java.time.Duration;
 import java.util.List;
@@ -33,6 +34,8 @@ public class ApiVerticle extends AbstractVerticle {
   private final UserHandler userHandler;
   private final RedisAPI redisAPI;
   private final Config config;
+
+  private HttpServer server;
 
   @Inject
   ApiVerticle(
@@ -66,18 +69,32 @@ public class ApiVerticle extends AbstractVerticle {
     mainRouter.get("/health*").handler(getHealthCheckHandler());
     mainRouter.get("/ping*").handler(getPingHandler());
 
-    // all unmatched requests go here
-    mainRouter.route("/*").handler(ctx -> ctx.response().setStatusCode(NOT_FOUND.code()).end());
+    mainRouter
+        .route("/*")
+        .handler(
+            ctx -> {
+              // if the request if for js or css, send the requested file
+              String path = ctx.request().path();
+
+              if (path.startsWith("/api")
+                  || path.startsWith("/health")
+                  || path.startsWith("/ping")) {
+                ctx.next();
+                return;
+              }
+
+              StaticHandler.create("svelte").handle(ctx);
+            });
 
     log.info("ping redis before starting http server");
     redisAPI
         .ping(List.of())
         .onFailure(startPromise::fail)
-        .onSuccess(
+        .map(
             ignore -> {
               Config.HttpConfig httpConfig = config.httpConfig();
               log.info("starting api verticle on port: {}", httpConfig.port());
-              vertx
+              return vertx
                   .createHttpServer(
                       new HttpServerOptions().setPort(httpConfig.port()).setHost("0.0.0.0"))
                   .requestHandler(mainRouter)
@@ -91,7 +108,8 @@ public class ApiVerticle extends AbstractVerticle {
                           startPromise.fail(res.cause());
                         }
                       });
-            });
+            })
+        .map(s -> this.server = s);
   }
 
   private HealthCheckHandler getPingHandler() {
@@ -131,12 +149,19 @@ public class ApiVerticle extends AbstractVerticle {
       }
     }
 
+    var multiCompletePromise = MultiCompletePromise.create(stopPromise, 2);
+    if (null != server) {
+      server.close(multiCompletePromise::complete);
+    } else {
+      multiCompletePromise.complete();
+    }
+
     System.err.println("awaitTermination...start");
     FutureUtil.awaitTermination()
         .onComplete(
             ar -> {
               System.err.printf("awaitTermination...end: %b%n", ar.result());
-              stopPromise.complete();
+              multiCompletePromise.complete();
             });
   }
 }

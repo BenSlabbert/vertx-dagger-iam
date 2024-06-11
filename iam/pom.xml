@@ -232,6 +232,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>github.benslabbert.vertx-dagger-iam</groupId>
+            <artifactId>ui</artifactId>
+            <version>${revision}</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <goals>
@@ -240,6 +247,24 @@
             <phase>package</phase>
             <configuration>
               <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-ui</id>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>github.benslabbert.vertx-dagger-iam</groupId>
+                  <artifactId>ui</artifactId>
+                  <version>${revision}</version>
+                  <type>jar</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.outputDirectory}/svelte</outputDirectory>
             </configuration>
           </execution>
         </executions>

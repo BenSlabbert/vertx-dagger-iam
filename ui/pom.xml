@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>github.benslabbert.vertx-dagger-iam</groupId>
+    <artifactId>iam-parent</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>ui</artifactId>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>app/build</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>install</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <executable>yarn</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>--cwd</argument>
+                <argument>app</argument>
+                <argument>install</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>build</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>compile</phase>
+            <configuration>
+              <executable>yarn</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>--cwd</argument>
+                <argument>app</argument>
+                <argument>run</argument>
+                <argument>buildDev</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

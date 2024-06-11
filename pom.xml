@@ -19,6 +19,7 @@
   <modules>
     <module>iam</module>
     <module>iam-rpc</module>
+    <module>ui</module>
   </modules>
 
   <distributionManagement>

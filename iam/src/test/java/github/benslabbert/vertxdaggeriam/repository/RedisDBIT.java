@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-class RedisDBTest extends IntegrationTestBase {
+class RedisDBIT extends IntegrationTestBase {
 
   @Test
   void updatePermissions(VertxTestContext testContext) {

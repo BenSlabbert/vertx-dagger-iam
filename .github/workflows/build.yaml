@@ -27,6 +27,10 @@ jobs:
         node-version: 20
         cache: "yarn"
         cache-dependency-path: "ui/app/yarn.lock"
+    - name: "Set up Maven"
+      uses: "stCarolas/setup-maven@v5"
+      with:
+        maven-version: "3.9.6"
     - run: "npm set \"//npm.pkg.github.com/:_authToken=$GH_TOKEN\""
     - run: "node --version"
     - run: "npm --version"

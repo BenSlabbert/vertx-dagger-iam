@@ -11,7 +11,7 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.LoginResponseDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RefreshRequestDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RefreshResponseDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RegisterRequestDto;
-import github.benslabbert.vertxdaggeriam.VerticleTestBase;
+import github.benslabbert.vertxdaggeriam.IntegrationTestBase;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -24,7 +24,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class ApiVerticleTest extends VerticleTestBase {
+class ApiVerticleIT extends IntegrationTestBase {
 
   static Stream<Arguments> loginInvalidRequestSource() {
     return Stream.of(

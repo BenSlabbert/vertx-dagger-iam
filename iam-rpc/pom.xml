@@ -204,6 +204,10 @@
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
+            <configuration>
+              <forkCount>1C</forkCount>
+              <reuseForks>true</reuseForks>
+            </configuration>
           </execution>
         </executions>
       </plugin>

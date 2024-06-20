@@ -192,6 +192,11 @@
       <artifactId>vertx-junit5</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>github.benslabbert.vertx-dagger-iam</groupId>
+      <artifactId>ui</artifactId>
+      <version>${revision}</version>
+    </dependency>
   </dependencies>
 
   <build>

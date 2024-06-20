@@ -1,8 +1,6 @@
 /* Licensed under Apache-2.0 2024. */
 package github.benslabbert.vertxdaggeriam;
 
-import static github.benslabbert.vertxdaggercommons.FreePortUtility.getPort;
-
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.docker.DockerContainers;
 import github.benslabbert.vertxdaggeriam.ioc.DaggerProvider;
@@ -16,8 +14,6 @@ import org.testcontainers.containers.GenericContainer;
 @ExtendWith(VertxExtension.class)
 public abstract class IntegrationTestBase {
 
-  protected static final int HTTP_PORT = getPort();
-
   protected Provider provider;
 
   protected static final GenericContainer<?> redis = DockerContainers.REDIS;
@@ -30,7 +26,7 @@ public abstract class IntegrationTestBase {
   void prepare(Vertx vertx) {
     Config config =
         Config.builder()
-            .httpConfig(Config.HttpConfig.builder().port(HTTP_PORT).build())
+            .httpConfig(Config.HttpConfig.builder().port(0).build())
             .redisConfig(
                 Config.RedisConfig.builder()
                     .host("127.0.0.1")

@@ -1,8 +1,6 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriamrpc;
 
-import static github.benslabbert.vertxdaggercommons.FreePortUtility.getPort;
-
 import github.benslabbert.vertxdaggercommons.ConfigEncoder;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.config.Config.HttpConfig;
@@ -19,14 +17,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(VertxExtension.class)
 public abstract class TestBase {
 
-  protected static final int HTTP_PORT = getPort();
-
   protected TestProvider provider;
 
   @BeforeEach
   void prepare(Vertx vertx, VertxTestContext testContext) {
-    Config config =
-        Config.builder().httpConfig(HttpConfig.builder().port(HTTP_PORT).build()).build();
+    Config config = Config.builder().httpConfig(HttpConfig.builder().port(0).build()).build();
 
     provider = DaggerTestProvider.builder().vertx(vertx).config(config).build();
 

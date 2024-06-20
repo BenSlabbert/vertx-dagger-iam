@@ -7,8 +7,10 @@ import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.future.FutureUtil;
 import github.benslabbert.vertxdaggercommons.future.MultiCompletePromise;
 import github.benslabbert.vertxdaggeriam.web.route.handler.UserHandler;
+import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.healthchecks.HealthCheckHandler;
@@ -50,6 +52,8 @@ public class ApiVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) {
     vertx.exceptionHandler(err -> log.error("unhandled exception", err));
 
+    final Buffer indexHtml = vertx.fileSystem().readFileBlocking("svelte/index.html");
+
     Router mainRouter = Router.router(vertx);
     Router apiRouter = Router.router(vertx);
 
@@ -69,11 +73,18 @@ public class ApiVerticle extends AbstractVerticle {
     mainRouter.get("/health*").handler(getHealthCheckHandler());
     mainRouter.get("/ping*").handler(getPingHandler());
 
+    StaticHandler staticHandler =
+        StaticHandler.create("svelte")
+            .setEnableFSTuning(true)
+            .setAlwaysAsyncFS(true)
+            .setMaxCacheSize(10_000)
+            .setCachingEnabled(true)
+            .setCacheEntryTimeout(Duration.ofHours(6).toMillis());
+
     mainRouter
-        .route("/*")
+        .get()
         .handler(
             ctx -> {
-              // if the request if for js or css, send the requested file
               String path = ctx.request().path();
 
               if (path.startsWith("/api")
@@ -83,7 +94,12 @@ public class ApiVerticle extends AbstractVerticle {
                 return;
               }
 
-              StaticHandler.create("svelte").handle(ctx);
+              if (path.equals("/") || path.endsWith(".js") || path.endsWith(".css")) {
+                staticHandler.handle(ctx);
+                return;
+              }
+
+              ctx.response().setStatusCode(HttpResponseStatus.OK.code()).end(indexHtml);
             });
 
     log.info("ping redis before starting http server");

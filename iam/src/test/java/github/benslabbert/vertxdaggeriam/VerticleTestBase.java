@@ -66,9 +66,9 @@ public abstract class VerticleTestBase {
         verticle,
         new DeploymentOptions().setConfig(cfg),
         ar -> {
-          RestAssured.baseURI = "http://127.0.0.1";
-          RestAssured.port = this.verticle.getPort();
           if (ar.succeeded()) {
+            RestAssured.baseURI = "http://127.0.0.1";
+            RestAssured.port = this.verticle.getPort();
             testContext.completeNow();
           } else {
             testContext.failNow(ar.cause());

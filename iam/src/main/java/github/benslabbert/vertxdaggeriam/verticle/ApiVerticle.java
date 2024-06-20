@@ -117,6 +117,7 @@ public class ApiVerticle extends AbstractVerticle {
                   .listen(
                       res -> {
                         if (res.succeeded()) {
+                          this.server = res.result();
                           log.info("started http server");
                           startPromise.complete();
                         } else {
@@ -124,8 +125,7 @@ public class ApiVerticle extends AbstractVerticle {
                           startPromise.fail(res.cause());
                         }
                       });
-            })
-        .map(s -> this.server = s);
+            });
 
     log.info("Configured routes");
     log.info("-------------------------");

@@ -5,13 +5,13 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-import github.benslabbert.vertxdaggeriam.VerticleTestBase;
+import github.benslabbert.vertxdaggeriam.IntegrationTestBase;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-class FullStackTestBase extends VerticleTestBase {
+class FullStackTestBase extends IntegrationTestBase {
 
   private static Playwright playwright;
   private static Browser browser;

@@ -7,6 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 import github.benslabbert.vertxdaggercommons.closer.CloserModule;
 import github.benslabbert.vertxdaggercommons.config.Config;
+import github.benslabbert.vertxdaggeriam.config.ConfigModule;
 import github.benslabbert.vertxdaggeriam.repository.RepositoryModule;
 import github.benslabbert.vertxdaggeriam.repository.UserRepository;
 import github.benslabbert.vertxdaggeriam.service.ServiceModule;
@@ -15,6 +16,7 @@ import github.benslabbert.vertxdaggeriam.verticle.ApiVerticle;
 import github.benslabbert.vertxdaggerstarter.redis.RedisModule;
 import io.vertx.core.Vertx;
 import io.vertx.redis.client.RedisAPI;
+import jakarta.validation.ValidatorFactory;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -22,6 +24,7 @@ import javax.inject.Singleton;
 @Singleton
 @Component(
     modules = {
+      ConfigModule.class,
       CloserModule.class,
       RepositoryModule.class,
       RedisModule.class,
@@ -37,6 +40,8 @@ public interface Provider {
   UserRepository userRepository();
 
   TokenService tokenService();
+
+  ValidatorFactory validatorFactory();
 
   @Component.Builder
   interface Builder {

@@ -1,7 +1,6 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriam.web.route.handler;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.CREATED;
 import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
 
@@ -12,10 +11,11 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RegisterRequestDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.UpdatePermissionsRequestDto;
 import github.benslabbert.vertxdaggercodegen.annotation.url.RestHandler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
-import github.benslabbert.vertxdaggeriam.web.SchemaValidatorDelegator;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import jakarta.validation.ConstraintViolation;
+import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -26,13 +26,13 @@ public class UserHandler {
 
   private static final Logger log = LoggerFactory.getLogger(UserHandler.class);
 
+  private final RequestValidator requestValidator;
   private final IamAuthApi iamAuthApi;
-  private final SchemaValidatorDelegator schemaValidatorDelegator;
 
   @Inject
-  UserHandler(IamAuthApi iamAuthApi, SchemaValidatorDelegator schemaValidatorDelegator) {
+  UserHandler(IamAuthApi iamAuthApi, RequestValidator requestValidator) {
     this.iamAuthApi = iamAuthApi;
-    this.schemaValidatorDelegator = schemaValidatorDelegator;
+    this.requestValidator = requestValidator;
   }
 
   public void configureRoutes(Router router) {
@@ -40,32 +40,21 @@ public class UserHandler {
     router.post(UserHandler_Refresh_ParamParser.PATH).handler(this::refresh);
     router.post(UserHandler_Register_ParamParser.PATH).handler(this::register);
     router.post(UserHandler_UpdatePermissions_ParamParser.PATH).handler(this::updatePermissions);
-
-    log.info("Configured routes for UserHandler");
-    log.info("-------------------------");
-    router
-        .getRoutes()
-        .forEach(
-            route -> {
-              log.info("Path: {}", route.getPath());
-              log.info("Methods: {}", route.methods());
-              log.info("-------------------------");
-            });
   }
 
   @RestHandler(path = "/login")
   void login(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
-    Boolean valid = schemaValidatorDelegator.validate(LoginRequestDto.class, body);
-
-    if (Boolean.FALSE.equals(valid)) {
+    LoginRequestDto req = LoginRequestDto.fromJson(body);
+    Set<ConstraintViolation<LoginRequestDto>> validations = requestValidator.validate(req);
+    if (!validations.isEmpty()) {
       log.error("invalid login request params");
-      ResponseWriter.writeBadRequest(ctx);
+      ResponseWriter.writeBadRequest(ctx, validations);
       return;
     }
 
     iamAuthApi
-        .login(LoginRequestDto.fromJson(body))
+        .login(req)
         .onFailure(
             err -> {
               log.error("failed to login user", err);
@@ -77,16 +66,16 @@ public class UserHandler {
   @RestHandler(path = "/refresh")
   void refresh(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
-    Boolean valid = schemaValidatorDelegator.validate(RefreshRequestDto.class, body);
-
-    if (Boolean.FALSE.equals(valid)) {
-      log.error("invalid refresh request params");
-      ctx.response().setStatusCode(BAD_REQUEST.code()).end();
+    RefreshRequestDto req = RefreshRequestDto.fromJson(body);
+    Set<ConstraintViolation<RefreshRequestDto>> validations = requestValidator.validate(req);
+    if (!validations.isEmpty()) {
+      log.error("invalid refresh request");
+      ResponseWriter.writeBadRequest(ctx, validations);
       return;
     }
 
     iamAuthApi
-        .refresh(RefreshRequestDto.fromJson(body))
+        .refresh(req)
         .onFailure(
             err -> {
               log.error("failed to refresh user", err);
@@ -98,16 +87,16 @@ public class UserHandler {
   @RestHandler(path = "/register")
   void register(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
-    Boolean valid = schemaValidatorDelegator.validate(RegisterRequestDto.class, body);
-
-    if (Boolean.FALSE.equals(valid)) {
-      log.error("invalid register request params");
-      ctx.response().setStatusCode(BAD_REQUEST.code()).end();
+    RegisterRequestDto req = RegisterRequestDto.fromJson(body);
+    Set<ConstraintViolation<RegisterRequestDto>> validations = requestValidator.validate(req);
+    if (!validations.isEmpty()) {
+      log.error("invalid register request");
+      ResponseWriter.writeBadRequest(ctx, validations);
       return;
     }
 
     iamAuthApi
-        .register(RegisterRequestDto.fromJson(body))
+        .register(req)
         .onFailure(
             err -> {
               log.error("failed to register user", err);
@@ -119,16 +108,17 @@ public class UserHandler {
   @RestHandler(path = "/update-permissions")
   void updatePermissions(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
-    Boolean valid = schemaValidatorDelegator.validate(UpdatePermissionsRequestDto.class, body);
-
-    if (Boolean.FALSE.equals(valid)) {
-      log.error("invalid register request params");
-      ctx.response().setStatusCode(BAD_REQUEST.code()).end();
+    UpdatePermissionsRequestDto req = UpdatePermissionsRequestDto.fromJson(body);
+    Set<ConstraintViolation<UpdatePermissionsRequestDto>> validations =
+        requestValidator.validate(req);
+    if (!validations.isEmpty()) {
+      log.error("invalid update permissions");
+      ResponseWriter.writeBadRequest(ctx, validations);
       return;
     }
 
     iamAuthApi
-        .updatePermissions(UpdatePermissionsRequestDto.fromJson(body))
+        .updatePermissions(req)
         .onFailure(
             err -> {
               log.error("failed to update user permissions", err);

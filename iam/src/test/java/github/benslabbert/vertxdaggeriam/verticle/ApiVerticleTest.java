@@ -38,7 +38,7 @@ class ApiVerticleTest extends VerticleTestBase {
   void loginInvalidRequest(LoginRequestDto dto, Vertx vertx, VertxTestContext testContext) {
     vertx
         .createHttpClient()
-        .request(POST, HTTP_PORT, "127.0.0.1", "/api/login")
+        .request(POST, verticle.getPort(), "127.0.0.1", "/api/login")
         .compose(req -> req.send(dto.toJson().toBuffer()))
         .onComplete(
             testContext.succeeding(
@@ -62,7 +62,7 @@ class ApiVerticleTest extends VerticleTestBase {
   void refreshInvalidRequest(RefreshRequestDto dto, Vertx vertx, VertxTestContext testContext) {
     vertx
         .createHttpClient()
-        .request(POST, HTTP_PORT, "127.0.0.1", "/api/refresh")
+        .request(POST, verticle.getPort(), "127.0.0.1", "/api/refresh")
         .compose(req -> req.send(dto.toJson().toBuffer()))
         .onComplete(
             testContext.succeeding(
@@ -87,7 +87,7 @@ class ApiVerticleTest extends VerticleTestBase {
   void registerInvalidRequest(RegisterRequestDto dto, Vertx vertx, VertxTestContext testContext) {
     vertx
         .createHttpClient()
-        .request(POST, HTTP_PORT, "127.0.0.1", "/api/register")
+        .request(POST, verticle.getPort(), "127.0.0.1", "/api/register")
         .compose(req -> req.send(dto.toJson().toBuffer()))
         .onComplete(
             testContext.succeeding(

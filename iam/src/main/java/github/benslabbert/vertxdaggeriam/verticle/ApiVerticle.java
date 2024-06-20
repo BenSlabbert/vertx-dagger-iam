@@ -123,6 +123,10 @@ public class ApiVerticle extends AbstractVerticle {
             });
   }
 
+  public int getPort() {
+    return server.actualPort();
+  }
+
   private HealthCheckHandler getPingHandler() {
     return HealthCheckHandler.create(vertx, NoAuthRequiredAuthenticationProvider.create())
         .register("ping", promise -> promise.complete(Status.OK()));

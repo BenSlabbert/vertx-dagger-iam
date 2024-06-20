@@ -1,8 +1,6 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriam;
 
-import static github.benslabbert.vertxdaggercommons.FreePortUtility.getPort;
-
 import github.benslabbert.vertxdaggercommons.ConfigEncoder;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.config.Config.HttpConfig;
@@ -10,6 +8,7 @@ import github.benslabbert.vertxdaggercommons.config.Config.RedisConfig;
 import github.benslabbert.vertxdaggercommons.docker.DockerContainers;
 import github.benslabbert.vertxdaggeriam.ioc.DaggerProvider;
 import github.benslabbert.vertxdaggeriam.ioc.Provider;
+import github.benslabbert.vertxdaggeriam.verticle.ApiVerticle;
 import io.restassured.RestAssured;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -25,9 +24,8 @@ import org.testcontainers.containers.GenericContainer;
 @ExtendWith(VertxExtension.class)
 public abstract class VerticleTestBase {
 
-  protected static final int HTTP_PORT = getPort();
-
   protected Provider provider;
+  protected ApiVerticle verticle;
 
   protected static final GenericContainer<?> redis = DockerContainers.REDIS;
 
@@ -44,7 +42,7 @@ public abstract class VerticleTestBase {
   void prepare(Vertx vertx, VertxTestContext testContext) {
     Config config =
         Config.builder()
-            .httpConfig(HttpConfig.builder().port(HTTP_PORT).build())
+            .httpConfig(HttpConfig.builder().port(0).build())
             .redisConfig(
                 RedisConfig.builder()
                     .host("127.0.0.1")
@@ -53,7 +51,7 @@ public abstract class VerticleTestBase {
                     .build())
             .build();
 
-    provider =
+    this.provider =
         DaggerProvider.builder()
             .vertx(vertx)
             .config(config)
@@ -62,16 +60,20 @@ public abstract class VerticleTestBase {
             .build();
 
     JsonObject cfg = ConfigEncoder.encode(config);
-    vertx.deployVerticle(
-        provider.apiVerticle(),
-        new DeploymentOptions().setConfig(cfg),
-        testContext.succeedingThenComplete());
-  }
+    this.verticle = provider.apiVerticle();
 
-  @BeforeEach
-  void before() {
-    RestAssured.baseURI = "http://127.0.0.1";
-    RestAssured.port = HTTP_PORT;
+    vertx.deployVerticle(
+        verticle,
+        new DeploymentOptions().setConfig(cfg),
+        ar -> {
+          RestAssured.baseURI = "http://127.0.0.1";
+          RestAssured.port = this.verticle.getPort();
+          if (ar.succeeded()) {
+            testContext.completeNow();
+          } else {
+            testContext.failNow(ar.cause());
+          }
+        });
   }
 
   @AfterEach

@@ -106,7 +106,12 @@
 		<button aria-busy={isLoading} type="submit" on:click|preventDefault={handleLoginCLick}>
 			Login
 		</button>
-		<button class="outline secondary" disabled={isLoading} type="submit" on:click|preventDefault={resetForm}>Reset</button>
+		<button
+			class="outline secondary"
+			disabled={isLoading}
+			type="submit"
+			on:click|preventDefault={resetForm}>Reset</button
+		>
 	</div>
 	<span>New here? <a href="/register">Register here</a></span>
 </form>

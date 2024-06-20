@@ -1,1 +1,1 @@
-<div>home</div>
+<div data-testid="home-element">home</div>

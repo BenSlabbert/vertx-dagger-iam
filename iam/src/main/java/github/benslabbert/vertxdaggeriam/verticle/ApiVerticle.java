@@ -1,16 +1,17 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriam.verticle;
 
+import static io.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
+import static io.netty.handler.codec.http.HttpResponseStatus.OK;
+
 import github.benslabbert.vertxdaggercommons.auth.NoAuthRequiredAuthenticationProvider;
 import github.benslabbert.vertxdaggercommons.closer.ClosingService;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.future.FutureUtil;
 import github.benslabbert.vertxdaggercommons.future.MultiCompletePromise;
 import github.benslabbert.vertxdaggeriam.web.route.handler.UserHandler;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
-import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.healthchecks.HealthCheckHandler;
@@ -52,8 +53,6 @@ public class ApiVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) {
     vertx.exceptionHandler(err -> log.error("unhandled exception", err));
 
-    final Buffer indexHtml = vertx.fileSystem().readFileBlocking("svelte/index.html");
-
     Router mainRouter = Router.router(vertx);
     Router apiRouter = Router.router(vertx);
 
@@ -75,6 +74,7 @@ public class ApiVerticle extends AbstractVerticle {
 
     StaticHandler staticHandler =
         StaticHandler.create("svelte")
+            .setFilesReadOnly(true)
             .setEnableFSTuning(true)
             .setAlwaysAsyncFS(true)
             .setMaxCacheSize(10_000)
@@ -93,13 +93,23 @@ public class ApiVerticle extends AbstractVerticle {
                 ctx.next();
                 return;
               }
-
               if (path.equals("/") || path.endsWith(".js") || path.endsWith(".css")) {
                 staticHandler.handle(ctx);
                 return;
               }
 
-              ctx.response().setStatusCode(HttpResponseStatus.OK.code()).end(indexHtml);
+              vertx
+                  .fileSystem()
+                  .readFile(
+                      "svelte/index.html",
+                      ar -> {
+                        if (ar.failed()) {
+                          ctx.response().setStatusCode(NOT_FOUND.code()).end();
+                          return;
+                        }
+
+                        ctx.response().setStatusCode(OK.code()).end(ar.result());
+                      });
             });
 
     log.info("ping redis before starting http server");

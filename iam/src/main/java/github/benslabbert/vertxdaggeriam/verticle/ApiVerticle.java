@@ -110,6 +110,17 @@ public class ApiVerticle extends AbstractVerticle {
                       });
             })
         .map(s -> this.server = s);
+
+    log.info("Configured routes");
+    log.info("-------------------------");
+    mainRouter
+        .getRoutes()
+        .forEach(
+            route -> {
+              log.info("Path: {}", route.getPath());
+              log.info("Methods: {}", route.methods());
+              log.info("-------------------------");
+            });
   }
 
   private HealthCheckHandler getPingHandler() {

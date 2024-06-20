@@ -14,7 +14,17 @@ import io.vertx.ext.auth.authentication.TokenCredentials;
 import io.vertx.ext.auth.jwt.JWTAuth;
 import io.vertx.ext.auth.jwt.JWTAuthOptions;
 import io.vertx.junit5.VertxTestContext;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,9 +65,56 @@ class JwtServiceTest extends UnitTestBase {
                         .setBuffer("123anothersupersecretkey789")));
   }
 
-  static Stream<Arguments> isValidRefreshSource() {
-    return Stream.of(
-        Arguments.of("", false), Arguments.of("invalid", false), Arguments.of(null, true));
+  @Test
+  void test() throws Exception {
+    record Test(
+        @NotBlank @Size(min = 3, max = 5) String a,
+        @NotBlank String b,
+        @Valid @NotNull Inner other) {
+      record Inner(@NotBlank String c, @NotBlank String d) {}
+    }
+
+    ValidatorFactory validatorFactory = provider.validatorFactory();
+    Validator validator = validatorFactory.getValidator();
+
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+    var futures =
+        IntStream.range(0, 100)
+            .mapToObj(
+                ignore ->
+                    executorService.submit(
+                        () -> {
+                          Set<ConstraintViolation<Test>> validate =
+                              validator.validate(new Test("a", "b", new Test.Inner("", "")));
+                          JsonObject convert = convert(validate);
+                          assertThat(convert).isNotNull();
+                        }))
+            .toList();
+
+    for (java.util.concurrent.Future<?> future : futures) {
+      future.get();
+    }
+
+    Set<ConstraintViolation<Test>> validate =
+        validator.validate(new Test("a", "b", new Test.Inner("", "")));
+    JsonObject convert = convert(validate);
+    assertThat(convert).isNotNull();
+
+    executorService.close();
+  }
+
+  <T> JsonObject convert(Set<ConstraintViolation<T>> violations) {
+    return new JsonObject()
+        .put(
+            "errors",
+            violations.stream()
+                .map(
+                    violation ->
+                        new JsonObject()
+                            .put("field", violation.getPropertyPath().toString())
+                            .put("message", violation.getMessage()))
+                .toList());
   }
 
   @Test
@@ -117,6 +174,11 @@ class JwtServiceTest extends UnitTestBase {
 
                       testContext.completeNow();
                     })));
+  }
+
+  static Stream<Arguments> isValidRefreshSource() {
+    return Stream.of(
+        Arguments.of("", false), Arguments.of("invalid", false), Arguments.of(null, true));
   }
 
   @ParameterizedTest

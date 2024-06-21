@@ -10,7 +10,7 @@
 
   <artifactId>ui</artifactId>
 
-    <properties>
+  <properties>
     <finalName>ui</finalName>
   </properties>
 

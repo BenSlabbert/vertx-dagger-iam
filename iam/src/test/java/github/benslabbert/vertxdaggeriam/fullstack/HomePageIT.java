@@ -8,7 +8,7 @@ class HomePageIT extends FullStackTestBase {
   @Test
   void test() {
     navigateTo("/");
-    System.err.printf("html:%n%s%n", page.content());
+    System.err.printf("HomePageIT html:%n%s%n", page.content());
     page.waitForCondition(page.getByTestId("home-element")::isVisible);
   }
 }

@@ -8,7 +8,7 @@ class RegisterPageIT extends FullStackTestBase {
   @Test
   void test() {
     navigateTo("/register");
-    System.err.printf("html:%n%s%n", page.content());
+    System.err.printf("RegisterPageIT html:%n%s%n", page.content());
     page.waitForCondition(page.locator("form")::isVisible);
   }
 }

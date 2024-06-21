@@ -35,6 +35,8 @@ jobs:
     - run: "yarn set version stable"
     - run: "yarn --version"
     - run: "git fetch --prune --unshallow --tags"
+    - run: "npx playwright install --with-deps"
+    - run: "make -C ui/app install buildDev"
     - run: "make 'M=mvn -s settings.xml -T 1C' fmtCheck"
     - run: "make 'M=mvn -s settings.xml -T 1C' deploy"
     - run: "echo $GH_TOKEN | docker login ghcr.io -u USERNAME --password-stdin"

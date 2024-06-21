@@ -272,7 +272,7 @@
             <goals>
               <goal>unpack</goal>
             </goals>
-            <phase>generate-sources</phase>
+            <phase>compile</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>

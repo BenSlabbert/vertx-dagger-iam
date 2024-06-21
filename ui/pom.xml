@@ -10,7 +10,12 @@
 
   <artifactId>ui</artifactId>
 
+    <properties>
+    <finalName>ui</finalName>
+  </properties>
+
   <build>
+    <finalName>${finalName}</finalName>
     <resources>
       <resource>
         <directory>app/build</directory>

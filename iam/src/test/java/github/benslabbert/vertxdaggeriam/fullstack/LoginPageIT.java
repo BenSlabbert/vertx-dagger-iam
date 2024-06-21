@@ -8,6 +8,7 @@ class LoginPageIT extends FullStackTestBase {
   @Test
   void test() {
     navigateTo("/login");
+    System.err.printf("html:%n%s%n", page.content());
     page.waitForCondition(page.locator("form")::isVisible);
   }
 }

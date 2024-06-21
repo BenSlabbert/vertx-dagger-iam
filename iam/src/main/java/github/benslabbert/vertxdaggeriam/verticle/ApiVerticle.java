@@ -21,6 +21,8 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.redis.client.RedisAPI;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -53,6 +55,17 @@ public class ApiVerticle extends AbstractVerticle {
   public void start(Promise<Void> startPromise) {
     vertx.exceptionHandler(err -> log.error("unhandled exception", err));
 
+    ClassLoader classLoader = getClass().getClassLoader();
+    try (InputStream inputStream = classLoader.getResourceAsStream("svelte/index.html")) {
+      if (inputStream == null) {
+        log.warn("inputStream is null");
+      } else {
+        log.info("loading index length: {}", inputStream.readAllBytes().length);
+      }
+    } catch (IOException e) {
+      log.error("unhandled exception while loading index", e);
+    }
+
     Router mainRouter = Router.router(vertx);
     Router apiRouter = Router.router(vertx);
 
@@ -72,14 +85,7 @@ public class ApiVerticle extends AbstractVerticle {
     mainRouter.get("/health*").handler(getHealthCheckHandler());
     mainRouter.get("/ping*").handler(getPingHandler());
 
-    StaticHandler staticHandler =
-        StaticHandler.create("svelte")
-            .setFilesReadOnly(true)
-            .setEnableFSTuning(true)
-            .setAlwaysAsyncFS(true)
-            .setMaxCacheSize(10_000)
-            .setCachingEnabled(true)
-            .setCacheEntryTimeout(Duration.ofHours(6).toMillis());
+    StaticHandler staticHandler = StaticHandler.create("svelte");
 
     mainRouter
         .get()

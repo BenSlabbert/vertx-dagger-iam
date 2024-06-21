@@ -113,6 +113,7 @@
             </includes>
             <excludes>
               <exclude>**/helm/**</exclude>
+              <exclude>**/node_modules/**</exclude>
             </excludes>
             <jackson />
           </yaml>

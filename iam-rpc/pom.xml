@@ -204,10 +204,6 @@
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
-            <configuration>
-              <forkCount>1C</forkCount>
-              <reuseForks>true</reuseForks>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -250,10 +246,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <forkCount>1C</forkCount>
-          <reuseForks>true</reuseForks>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

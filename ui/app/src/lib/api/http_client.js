@@ -22,7 +22,7 @@ async function login(username, password) {
 		body: JSON.stringify({ username, password })
 	});
 
-	return handleResponse(resp);
+	return handleResponse(resp, '/');
 }
 
 /**
@@ -58,21 +58,22 @@ async function register(username, password) {
 		body: JSON.stringify({ username, password, access })
 	});
 
-	return handleResponse(resp);
+	return handleResponse(resp, '/login');
 }
 
 /**
  * @param {Response} resp
+ * @param {string} redirect
  * @returns {Promise<ApiResponse>}
  */
-async function handleResponse(resp) {
+async function handleResponse(resp, redirect) {
 	console.log('resp.status', resp.status);
 
 	if (resp.ok) {
 		if (resp.status === 204) {
 			console.log('success no content');
 			return {
-				redirect: '/',
+				redirect: redirect,
 				errors: []
 			};
 		}
@@ -81,7 +82,7 @@ async function handleResponse(resp) {
 		console.log('success json', json);
 		localStorageStore.set('auth', json);
 		return {
-			redirect: '/',
+			redirect: redirect,
 			errors: []
 		};
 	}
@@ -91,13 +92,8 @@ async function handleResponse(resp) {
 		console.log('client error json', json);
 		return {
 			redirect: null,
-			errors: [
-				{
-					field: 'username',
-					message: 'Invalid username'
-				}
-			]
-		};
+			errors: json.errors
+    };
 	}
 
 	if (resp.status >= 500) {

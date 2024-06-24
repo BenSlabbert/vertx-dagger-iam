@@ -38,25 +38,23 @@
 		isLoading = true;
 		const { redirect, errors } = await api.login(username, password);
 
-		setTimeout(() => {
-			fieldErrors = {};
-			formErrors = [];
+    fieldErrors = {};
+    formErrors = [];
 
-			if (redirect) {
-				goto(redirect);
-				return;
-			}
+    if (redirect) {
+      await goto(redirect);
+      return;
+    }
 
-			errors.forEach((e) => {
-				if (e.field) {
-					fieldErrors[e.field] = e.message;
-				} else {
-					formErrors.push(e.message);
-				}
-			});
+    errors.forEach((e) => {
+      if (e.field) {
+        fieldErrors[e.field] = e.message;
+      } else {
+        formErrors.push(e.message);
+      }
+    });
 
-			isLoading = false;
-		}, 100);
+    isLoading = false;
 	}
 </script>
 

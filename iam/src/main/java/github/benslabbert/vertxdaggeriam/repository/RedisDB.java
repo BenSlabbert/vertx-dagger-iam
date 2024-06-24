@@ -47,7 +47,7 @@ class RedisDB implements UserRepository, AutoCloseable {
         .map(
             resp -> {
               if (null == resp) {
-                throw new HttpException(HttpResponseStatus.INTERNAL_SERVER_ERROR.code());
+                throw new HttpException(HttpResponseStatus.NOT_FOUND.code());
               }
 
               if (ResponseType.BULK != resp.type()) {
@@ -199,11 +199,7 @@ class RedisDB implements UserRepository, AutoCloseable {
                 // must quote values back to redis
                 "\"" + newRefreshToken + "\"",
                 RedisConstants.SET_IF_EXIST))
-        .map(
-            resp -> {
-              System.err.println("resp: " + resp);
-              return null;
-            });
+        .map(ignore -> null);
   }
 
   private static String prefixId(String username) {

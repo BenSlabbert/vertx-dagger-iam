@@ -4,6 +4,7 @@ package github.benslabbert.vertxdaggeriam.entity;
 import com.google.auto.value.AutoBuilder;
 import github.benslabbert.jsonwriter.annotation.JsonWriter;
 import io.vertx.core.json.JsonObject;
+import java.util.Set;
 
 @JsonWriter
 public record User(String username, String password, String refreshToken, ACL acl) {
@@ -19,6 +20,10 @@ public record User(String username, String password, String refreshToken, ACL ac
 
   public static User fromJson(JsonObject json) {
     return User_JsonWriter.fromJson(json);
+  }
+
+  public static Set<String> missingRequiredFields(JsonObject json) {
+    return User_JsonWriter.missingRequiredFields(json);
   }
 
   public JsonObject toJson() {

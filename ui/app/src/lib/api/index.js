@@ -1,7 +1,8 @@
-import { login, register } from './http_client.js';
+import { login, logout, register } from './http_client.js';
 
 const api = {
 	login,
+	logout,
 	register
 };
 

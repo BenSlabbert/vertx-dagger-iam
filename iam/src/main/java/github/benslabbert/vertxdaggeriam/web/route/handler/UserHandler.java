@@ -11,9 +11,11 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RegisterRequestDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.UpdatePermissionsRequestDto;
 import github.benslabbert.vertxdaggercodegen.annotation.url.RestHandler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
+import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.HttpException;
 import jakarta.validation.ConstraintViolation;
 import java.util.Set;
 import javax.inject.Inject;
@@ -45,6 +47,13 @@ public class UserHandler {
   @RestHandler(path = "/login")
   void login(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
+    Set<String> missingFields = LoginRequestDto.missingRequiredFields(body);
+    if (!missingFields.isEmpty()) {
+      // send errors
+      ResponseWriter.writeBadRequest(ctx);
+      return;
+    }
+
     LoginRequestDto req = LoginRequestDto.fromJson(body);
     Set<ConstraintViolation<LoginRequestDto>> validations = requestValidator.validate(req);
     if (!validations.isEmpty()) {
@@ -58,6 +67,11 @@ public class UserHandler {
         .onFailure(
             err -> {
               log.error("failed to login user", err);
+              if (err instanceof HttpException e) {
+                ResponseWriter.write(
+                    ctx, new JsonObject(), HttpResponseStatus.valueOf(e.getStatusCode()));
+                return;
+              }
               ResponseWriter.writeInternalError(ctx);
             })
         .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED));
@@ -66,6 +80,13 @@ public class UserHandler {
   @RestHandler(path = "/refresh")
   void refresh(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
+    Set<String> missingFields = RefreshRequestDto.missingRequiredFields(body);
+    if (!missingFields.isEmpty()) {
+      // send errors
+      ResponseWriter.writeBadRequest(ctx);
+      return;
+    }
+
     RefreshRequestDto req = RefreshRequestDto.fromJson(body);
     Set<ConstraintViolation<RefreshRequestDto>> validations = requestValidator.validate(req);
     if (!validations.isEmpty()) {
@@ -87,6 +108,13 @@ public class UserHandler {
   @RestHandler(path = "/register")
   void register(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
+    Set<String> missingFields = RegisterRequestDto.missingRequiredFields(body);
+    if (!missingFields.isEmpty()) {
+      // send errors
+      ResponseWriter.writeBadRequest(ctx);
+      return;
+    }
+
     RegisterRequestDto req = RegisterRequestDto.fromJson(body);
     Set<ConstraintViolation<RegisterRequestDto>> validations = requestValidator.validate(req);
     if (!validations.isEmpty()) {
@@ -108,6 +136,13 @@ public class UserHandler {
   @RestHandler(path = "/update-permissions")
   void updatePermissions(RoutingContext ctx) {
     JsonObject body = ctx.body().asJsonObject();
+    Set<String> missingFields = UpdatePermissionsRequestDto.missingRequiredFields(body);
+    if (!missingFields.isEmpty()) {
+      // send errors
+      ResponseWriter.writeBadRequest(ctx);
+      return;
+    }
+
     UpdatePermissionsRequestDto req = UpdatePermissionsRequestDto.fromJson(body);
     Set<ConstraintViolation<UpdatePermissionsRequestDto>> validations =
         requestValidator.validate(req);

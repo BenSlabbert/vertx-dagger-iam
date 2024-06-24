@@ -1,5 +1,7 @@
+import { localStorageStore } from '$lib/store';
+
 /**
- * @typedef {{redirect:string|null, errors: Array<{field: string|null, message: string}>}} Response
+ * @typedef {{redirect:string|null, errors: Array<{field: string|null, message: string}>}} ApiResponse
  */
 
 /**
@@ -7,28 +9,29 @@
  *
  * @param {string} username
  * @param {string} password
- * @returns {Promise<Response>}
+ * @returns {Promise<ApiResponse>}
  */
-function login(username, password) {
+async function login(username, password) {
 	console.log('Logging in with username:', username, 'and password:', password);
 
-	// const isValid = new Date().getTime() % 2 === 0;
-	const isValid = false;
-
-	return Promise.resolve({
-		redirect: isValid ? '/' : null,
-		errors: isValid
-			? []
-			: [
-					{
-						field: 'username',
-						message: 'Invalid username'
-					},
-					{
-						message: 'Global form error'
-					}
-				]
+	const resp = await fetch('http://localhost:8080/api/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ username, password })
 	});
+
+	return handleResponse(resp);
+}
+
+/**
+ * Logout from the application.
+ *
+ * @returns {void}
+ */
+function logout() {
+	localStorageStore.clear('auth');
 }
 
 /**
@@ -36,24 +39,79 @@ function login(username, password) {
  *
  * @param {string} username
  * @param {string} password
- * @returns {Promise<Response>}
+ * @returns {Promise<ApiResponse>}
  */
-function register(username, password) {
+async function register(username, password) {
 	console.log('Registering with username:', username, 'and password :', password);
 
-	const isValid = new Date().getTime() % 2 === 0;
+	const access = {
+		group: 'ui',
+		role: 'user',
+		permissions: ['read', 'write']
+	};
 
-	return Promise.resolve({
-		redirect: isValid ? '/login' : null,
-		errors: isValid
-			? []
-			: [
-					{
-						field: 'username',
-						message: 'Invalid username'
-					}
-				]
+	const resp = await fetch('http://localhost:8080/api/register', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ username, password, access })
 	});
+
+	return handleResponse(resp);
 }
 
-export { login, register };
+/**
+ * @param {Response} resp
+ * @returns {Promise<ApiResponse>}
+ */
+async function handleResponse(resp) {
+	console.log('resp.status', resp.status);
+
+	if (resp.ok) {
+		if (resp.status === 204) {
+			console.log('success no content');
+			return {
+				redirect: '/',
+				errors: []
+			};
+		}
+
+		const json = await resp.json();
+		console.log('success json', json);
+		localStorageStore.set('auth', json);
+		return {
+			redirect: '/',
+			errors: []
+		};
+	}
+
+	if (resp.status >= 400 && resp.status < 500) {
+		const json = await resp.json();
+		console.log('client error json', json);
+		return {
+			redirect: null,
+			errors: [
+				{
+					field: 'username',
+					message: 'Invalid username'
+				}
+			]
+		};
+	}
+
+	if (resp.status >= 500) {
+		console.log('server error');
+		return {
+			redirect: null,
+			errors: [
+				{
+					field: null,
+					message: 'Server error'
+				}
+			]
+		};
+	}
+}
+
+export { login, logout, register };

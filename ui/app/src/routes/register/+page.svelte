@@ -1,5 +1,6 @@
 <script lang="js">
 	import api from '$lib/api';
+	import { goto } from '$app/navigation';
 
 	/**
 	 * @type {string}
@@ -11,38 +12,105 @@
 	 */
 	let password;
 
-	function handleRegisterCLick() {
-		api.register(username, password);
+	/**
+	 * @type {boolean}
+	 */
+	let isLoading = false;
+
+	/**
+	 * @type {Record<string, string>}
+	 */
+	let fieldErrors = {};
+
+	/**
+	 * @type {Array<string>}
+	 */
+	let formErrors = [];
+
+	function resetForm() {
+		username = '';
+		password = '';
+		fieldErrors = {};
+		formErrors = [];
+	}
+
+	async function handleRegisterCLick() {
+		isLoading = true;
+
+		const { redirect, errors } = await api.register(username, password);
+
+    fieldErrors = {};
+    formErrors = [];
+
+    if (redirect) {
+      await goto(redirect);
+      return;
+    }
+
+    errors.forEach((e) => {
+      if (e.field) {
+        fieldErrors[e.field] = e.message;
+      } else {
+        formErrors.push(e.message);
+      }
+    });
+
+    isLoading = false;
 	}
 </script>
 
-<form data-testid="register-form">
-	<fieldset>
+<form class="container" data-testid="register-form" style="width: 50%">
+	<fieldset disabled={isLoading}>
 		<label>
-			Username
+			<span style="color: var(--pico-primary)">*</span>Username
 			<input
+				required
+				aria-invalid={fieldErrors['username'] ? 'true' : null}
 				type="text"
 				name="username"
 				placeholder="Username"
 				autocomplete="username"
 				bind:value={username}
 			/>
+			{#if fieldErrors['username']}
+				<small>{fieldErrors['username']}</small>
+			{/if}
 		</label>
 		<label>
-			Password
+			<span style="color: var(--pico-primary)">*</span>Password
 			<input
+				required
+				aria-invalid={fieldErrors['password'] ? 'true' : null}
 				type="password"
 				name="password"
 				placeholder="Password"
 				autocomplete="current-password"
 				bind:value={password}
 			/>
+			{#if fieldErrors['password']}
+				<small>{fieldErrors['password']}</small>
+			{/if}
 		</label>
 	</fieldset>
 
-	<input type="submit" value="Register" on:click|preventDefault={handleRegisterCLick} />
-</form>
+	{#if formErrors.length > 0}
+		{#each formErrors as error}
+			<div style="margin-bottom: calc(var(--pico-spacing)* .375); color: var(--pico-del-color)">
+				<span>{error}</span>
+			</div>
+		{/each}
+	{/if}
 
-<div>
+	<div class="grid">
+		<button aria-busy={isLoading} type="submit" on:click|preventDefault={handleRegisterCLick}>
+			Register
+		</button>
+		<button
+			class="outline secondary"
+			disabled={isLoading}
+			type="submit"
+			on:click|preventDefault={resetForm}>Reset</button
+		>
+	</div>
 	<span>Already have an account? <a href="/login">Login here</a></span>
-</div>
+</form>

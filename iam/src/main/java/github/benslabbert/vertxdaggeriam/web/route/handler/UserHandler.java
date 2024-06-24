@@ -12,6 +12,7 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.UpdatePermissionsReque
 import github.benslabbert.vertxdaggercodegen.annotation.url.RestHandler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
 import io.netty.handler.codec.http.HttpResponseStatus;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -49,8 +50,13 @@ public class UserHandler {
     JsonObject body = ctx.body().asJsonObject();
     Set<String> missingFields = LoginRequestDto.missingRequiredFields(body);
     if (!missingFields.isEmpty()) {
-      // send errors
-      ResponseWriter.writeBadRequest(ctx);
+      JsonArray errors = new JsonArray();
+      for (String missingField : missingFields) {
+        errors.add(
+            new JsonObject().put("field", missingField).put("message", "required field missing"));
+      }
+      JsonObject msg = new JsonObject().put("errors", errors);
+      ResponseWriter.write(ctx, msg, HttpResponseStatus.BAD_REQUEST);
       return;
     }
 
@@ -110,8 +116,13 @@ public class UserHandler {
     JsonObject body = ctx.body().asJsonObject();
     Set<String> missingFields = RegisterRequestDto.missingRequiredFields(body);
     if (!missingFields.isEmpty()) {
-      // send errors
-      ResponseWriter.writeBadRequest(ctx);
+      JsonArray errors = new JsonArray();
+      for (String missingField : missingFields) {
+        errors.add(
+            new JsonObject().put("field", missingField).put("message", "required field missing"));
+      }
+      JsonObject msg = new JsonObject().put("errors", errors);
+      ResponseWriter.write(ctx, msg, HttpResponseStatus.BAD_REQUEST);
       return;
     }
 

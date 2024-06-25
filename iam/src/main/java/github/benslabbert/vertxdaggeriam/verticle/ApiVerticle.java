@@ -26,7 +26,6 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -186,10 +185,10 @@ public class ApiVerticle extends AbstractVerticle {
     Set<AutoCloseable> closeables = closingService.closeables();
     System.err.printf("closing created resources [%d]...%n", closeables.size());
 
-    AtomicInteger idx = new AtomicInteger(0);
+    int idx = 0;
     for (AutoCloseable service : closeables) {
       try {
-        System.err.printf("closing: [%d/%d]%n", idx.incrementAndGet(), closeables.size());
+        System.err.printf("closing: [%d/%d]%n", idx++, closeables.size());
         service.close();
       } catch (Exception e) {
         System.err.println("unable to close resources: " + e);

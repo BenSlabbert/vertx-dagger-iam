@@ -11,14 +11,8 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RegisterRequestDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.UpdatePermissionsRequestDto;
 import github.benslabbert.vertxdaggercodegen.annotation.url.RestHandler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.handler.HttpException;
-import jakarta.validation.ConstraintViolation;
-import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -29,13 +23,13 @@ public class UserHandler {
 
   private static final Logger log = LoggerFactory.getLogger(UserHandler.class);
 
-  private final RequestValidator requestValidator;
+  private final RequestPreProcessor preProcessor;
   private final IamAuthApi iamAuthApi;
 
   @Inject
-  UserHandler(IamAuthApi iamAuthApi, RequestValidator requestValidator) {
+  UserHandler(IamAuthApi iamAuthApi, RequestPreProcessor preProcessor) {
     this.iamAuthApi = iamAuthApi;
-    this.requestValidator = requestValidator;
+    this.preProcessor = preProcessor;
   }
 
   public void configureRoutes(Router router) {
@@ -46,130 +40,70 @@ public class UserHandler {
   }
 
   @RestHandler(path = "/login")
-  void login(RoutingContext ctx) {
-    JsonObject body = ctx.body().asJsonObject();
-    Set<String> missingFields = LoginRequestDto.missingRequiredFields(body);
-    if (!missingFields.isEmpty()) {
-      JsonArray errors = new JsonArray();
-      for (String missingField : missingFields) {
-        errors.add(
-            new JsonObject().put("field", missingField).put("message", "required field missing"));
-      }
-      JsonObject msg = new JsonObject().put("errors", errors);
-      ResponseWriter.write(ctx, msg, HttpResponseStatus.BAD_REQUEST);
-      return;
-    }
-
-    LoginRequestDto req = LoginRequestDto.fromJson(body);
-    Set<ConstraintViolation<LoginRequestDto>> validations = requestValidator.validate(req);
-    if (!validations.isEmpty()) {
-      log.error("invalid login request params");
-      ResponseWriter.writeBadRequest(ctx, validations);
-      return;
-    }
-
-    iamAuthApi
-        .login(req)
-        .onFailure(
-            err -> {
-              log.error("failed to login user", err);
-              if (err instanceof HttpException e) {
-                ResponseWriter.write(
-                    ctx, new JsonObject(), HttpResponseStatus.valueOf(e.getStatusCode()));
-                return;
-              }
-              ResponseWriter.writeInternalError(ctx);
-            })
-        .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED));
+  private void login(RoutingContext ctx) {
+    preProcessor.process(
+        ctx,
+        LoginRequestDto::missingRequiredFields,
+        LoginRequestDto::fromJson,
+        req ->
+            iamAuthApi
+                .login(req)
+                .onFailure(
+                    err -> {
+                      log.error("failed to login user", err);
+                      ResponseWriter.writeError(ctx, err);
+                    })
+                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED)));
   }
 
   @RestHandler(path = "/refresh")
-  void refresh(RoutingContext ctx) {
-    JsonObject body = ctx.body().asJsonObject();
-    Set<String> missingFields = RefreshRequestDto.missingRequiredFields(body);
-    if (!missingFields.isEmpty()) {
-      // send errors
-      ResponseWriter.writeBadRequest(ctx);
-      return;
-    }
-
-    RefreshRequestDto req = RefreshRequestDto.fromJson(body);
-    Set<ConstraintViolation<RefreshRequestDto>> validations = requestValidator.validate(req);
-    if (!validations.isEmpty()) {
-      log.error("invalid refresh request");
-      ResponseWriter.writeBadRequest(ctx, validations);
-      return;
-    }
-
-    iamAuthApi
-        .refresh(req)
-        .onFailure(
-            err -> {
-              log.error("failed to refresh user", err);
-              ResponseWriter.writeInternalError(ctx);
-            })
-        .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED));
+  private void refresh(RoutingContext ctx) {
+    preProcessor.process(
+        ctx,
+        RefreshRequestDto::missingRequiredFields,
+        RefreshRequestDto::fromJson,
+        req ->
+            iamAuthApi
+                .refresh(req)
+                .onFailure(
+                    err -> {
+                      log.error("failed to refresh user", err);
+                      ResponseWriter.writeError(ctx, err);
+                    })
+                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED)));
   }
 
   @RestHandler(path = "/register")
-  void register(RoutingContext ctx) {
-    JsonObject body = ctx.body().asJsonObject();
-    Set<String> missingFields = RegisterRequestDto.missingRequiredFields(body);
-    if (!missingFields.isEmpty()) {
-      JsonArray errors = new JsonArray();
-      for (String missingField : missingFields) {
-        errors.add(
-            new JsonObject().put("field", missingField).put("message", "required field missing"));
-      }
-      JsonObject msg = new JsonObject().put("errors", errors);
-      ResponseWriter.write(ctx, msg, HttpResponseStatus.BAD_REQUEST);
-      return;
-    }
-
-    RegisterRequestDto req = RegisterRequestDto.fromJson(body);
-    Set<ConstraintViolation<RegisterRequestDto>> validations = requestValidator.validate(req);
-    if (!validations.isEmpty()) {
-      log.error("invalid register request");
-      ResponseWriter.writeBadRequest(ctx, validations);
-      return;
-    }
-
-    iamAuthApi
-        .register(req)
-        .onFailure(
-            err -> {
-              log.error("failed to register user", err);
-              ResponseWriter.writeInternalError(ctx);
-            })
-        .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), NO_CONTENT));
+  private void register(RoutingContext ctx) {
+    preProcessor.process(
+        ctx,
+        RegisterRequestDto::missingRequiredFields,
+        RegisterRequestDto::fromJson,
+        req ->
+            iamAuthApi
+                .register(req)
+                .onFailure(
+                    err -> {
+                      log.error("failed to register user", err);
+                      ResponseWriter.writeError(ctx, err);
+                    })
+                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), NO_CONTENT)));
   }
 
   @RestHandler(path = "/update-permissions")
-  void updatePermissions(RoutingContext ctx) {
-    JsonObject body = ctx.body().asJsonObject();
-    Set<String> missingFields = UpdatePermissionsRequestDto.missingRequiredFields(body);
-    if (!missingFields.isEmpty()) {
-      // send errors
-      ResponseWriter.writeBadRequest(ctx);
-      return;
-    }
-
-    UpdatePermissionsRequestDto req = UpdatePermissionsRequestDto.fromJson(body);
-    Set<ConstraintViolation<UpdatePermissionsRequestDto>> validations =
-        requestValidator.validate(req);
-    if (!validations.isEmpty()) {
-      log.error("invalid update permissions");
-      ResponseWriter.writeBadRequest(ctx, validations);
-      return;
-    }
-
-    iamAuthApi
-        .updatePermissions(req)
-        .onFailure(
-            err -> {
-              log.error("failed to update user permissions", err);
-              ResponseWriter.writeInternalError(ctx);
-            })
-        .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), NO_CONTENT));
+  private void updatePermissions(RoutingContext ctx) {
+    preProcessor.process(
+        ctx,
+        UpdatePermissionsRequestDto::missingRequiredFields,
+        UpdatePermissionsRequestDto::fromJson,
+        req ->
+            iamAuthApi
+                .updatePermissions(req)
+                .onFailure(
+                    err -> {
+                      log.error("failed to update user permissions", err);
+                      ResponseWriter.writeError(ctx, err);
+                    })
+                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), NO_CONTENT)));
   }
 }

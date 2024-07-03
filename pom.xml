@@ -33,6 +33,9 @@
   <properties>
     <!--config-->
     <dockerImageNameBase>ghcr.io/benslabbert/vertx-dagger-iam</dockerImageNameBase>
+    <quickly>false</quickly>
+    <docker.skip>${quickly}</docker.skip>
+    <shade.skip>${quickly}</shade.skip>
 
     <!--deps-->
     <jsonwriter.version>1.29.0</jsonwriter.version>

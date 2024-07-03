@@ -229,6 +229,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <skip>${shade.skip}</skip>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
@@ -258,6 +259,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
+              <skip>${docker.skip}</skip>
               <executable>docker</executable>
               <workingDirectory>${project.basedir}</workingDirectory>
               <arguments>

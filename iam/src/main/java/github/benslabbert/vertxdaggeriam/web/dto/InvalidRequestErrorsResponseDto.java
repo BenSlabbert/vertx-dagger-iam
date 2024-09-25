@@ -6,7 +6,6 @@ import com.google.common.collect.ImmutableList;
 import github.benslabbert.jsonwriter.annotation.JsonWriter;
 import io.vertx.core.json.JsonObject;
 import java.util.List;
-import java.util.Set;
 
 @JsonWriter
 public record InvalidRequestErrorsResponseDto(List<InvalidRequestFieldsResponseDto> errors) {
@@ -17,10 +16,6 @@ public record InvalidRequestErrorsResponseDto(List<InvalidRequestFieldsResponseD
 
   public static InvalidRequestErrorsResponseDto fromJson(JsonObject json) {
     return InvalidRequestErrorsResponseDto_JsonWriter.fromJson(json);
-  }
-
-  public static Set<String> missingRequiredFields(JsonObject json) {
-    return InvalidRequestErrorsResponseDto_JsonWriter.missingRequiredFields(json);
   }
 
   public JsonObject toJson() {

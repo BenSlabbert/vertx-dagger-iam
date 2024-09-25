@@ -43,7 +43,6 @@ public class UserHandler {
   private void login(RoutingContext ctx) {
     preProcessor.process(
         ctx,
-        LoginRequestDto::missingRequiredFields,
         LoginRequestDto::fromJson,
         req ->
             iamAuthApi
@@ -60,7 +59,6 @@ public class UserHandler {
   private void refresh(RoutingContext ctx) {
     preProcessor.process(
         ctx,
-        RefreshRequestDto::missingRequiredFields,
         RefreshRequestDto::fromJson,
         req ->
             iamAuthApi
@@ -77,7 +75,6 @@ public class UserHandler {
   private void register(RoutingContext ctx) {
     preProcessor.process(
         ctx,
-        RegisterRequestDto::missingRequiredFields,
         RegisterRequestDto::fromJson,
         req ->
             iamAuthApi
@@ -94,7 +91,6 @@ public class UserHandler {
   private void updatePermissions(RoutingContext ctx) {
     preProcessor.process(
         ctx,
-        UpdatePermissionsRequestDto::missingRequiredFields,
         UpdatePermissionsRequestDto::fromJson,
         req ->
             iamAuthApi

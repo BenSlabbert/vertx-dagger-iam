@@ -70,8 +70,8 @@ async function handleResponse(resp, redirect) {
 	console.log('resp.status', resp.status);
 
 	if (resp.ok) {
-		if (resp.status === 204) {
-			console.log('success no content');
+		if (resp.status === 204 || resp.status === 201) {
+			console.log('success no content/created');
 			return {
 				redirect: redirect,
 				errors: []

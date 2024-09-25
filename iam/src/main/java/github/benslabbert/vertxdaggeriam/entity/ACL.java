@@ -21,10 +21,6 @@ public record ACL(String group, String role, Set<String> permissions) {
     return ACL_JsonWriter.fromJson(json);
   }
 
-  public static Set<String> missingRequiredFields(JsonObject json) {
-    return ACL_JsonWriter.missingRequiredFields(json);
-  }
-
   public JsonObject toJson() {
     return ACL_JsonWriter.toJson(this);
   }

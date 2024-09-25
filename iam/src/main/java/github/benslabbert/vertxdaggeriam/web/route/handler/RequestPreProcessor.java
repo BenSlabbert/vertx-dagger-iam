@@ -1,11 +1,7 @@
 /* Licensed under Apache-2.0 2024. */
 package github.benslabbert.vertxdaggeriam.web.route.handler;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
-
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
-import github.benslabbert.vertxdaggeriam.web.dto.InvalidRequestErrorsResponseDto;
-import github.benslabbert.vertxdaggeriam.web.dto.InvalidRequestFieldsResponseDto;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import jakarta.validation.ConstraintViolation;
@@ -26,29 +22,9 @@ class RequestPreProcessor {
   }
 
   <T> void process(
-      RoutingContext ctx,
-      Function<JsonObject, Set<String>> missingFieldsFunction,
-      Function<JsonObject, T> fromJsonFunction,
-      Consumer<T> nextFunction) {
+      RoutingContext ctx, Function<JsonObject, T> fromJsonFunction, Consumer<T> nextFunction) {
 
     JsonObject body = ctx.body().asJsonObject();
-    Set<String> missingFields = missingFieldsFunction.apply(body);
-
-    if (!missingFields.isEmpty()) {
-      var builder = InvalidRequestErrorsResponseDto.builder();
-      var errorBuilder = builder.errorsBuilder();
-      missingFields.stream()
-          .map(
-              field ->
-                  InvalidRequestFieldsResponseDto.builder()
-                      .field(field)
-                      .message("required field missing")
-                      .build())
-          .forEach(errorBuilder::add);
-      InvalidRequestErrorsResponseDto resp = builder.build();
-      ResponseWriter.write(ctx, resp.toJson(), BAD_REQUEST);
-      return;
-    }
 
     T req = fromJsonFunction.apply(body);
     Set<ConstraintViolation<T>> validations = requestValidator.validate(req);

@@ -93,7 +93,7 @@ async function handleResponse(resp, redirect) {
 		return {
 			redirect: null,
 			errors: json.errors
-    };
+		};
 	}
 
 	if (resp.status >= 500) {

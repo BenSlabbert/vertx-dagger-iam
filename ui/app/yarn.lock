@@ -803,12 +803,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "@sveltejs/kit@npm:2.6.2"
+"@sveltejs/kit@npm:^2.6.3":
+  version: 2.6.3
+  resolution: "@sveltejs/kit@npm:2.6.3"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
-    cookie: "npm:^0.7.0"
+    cookie: "npm:^0.6.0"
     devalue: "npm:^5.1.0"
     esm-env: "npm:^1.0.0"
     import-meta-resolve: "npm:^4.1.0"
@@ -825,7 +825,7 @@ __metadata:
     vite: ^5.0.3
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/5be8785159e3d7f77d5d785bc1c5eea8f31296cf30ab8822fdaf3895a75436dba05b3667b3f96b24933c4467dd4e8975ca31f35428f6804919ab346a71c4ac99
+  checksum: 10/f93ece9f9da0fe0ff0374d300b87d0e0c4f3e3feb0833897e90deae5c5e15cd0274ca3dc284f5208746973b4386c13119499b585ff25ff925a22bd04735953ff
   languageName: node
   linkType: hard
 
@@ -1109,7 +1109,7 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.47.2"
     "@sveltejs/adapter-static": "npm:^3.0.5"
-    "@sveltejs/kit": "npm:^2.6.2"
+    "@sveltejs/kit": "npm:^2.6.3"
     "@sveltejs/vite-plugin-svelte": "npm:^3.1.2"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.12.0"
@@ -1289,10 +1289,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.7.0":
-  version: 0.7.1
-  resolution: "cookie@npm:0.7.1"
-  checksum: 10/aec6a6aa0781761bf55d60447d6be08861d381136a0fe94aa084fddd4f0300faa2b064df490c6798adfa1ebaef9e0af9b08a189c823e0811b8b313b3d9a03380
+"cookie@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "cookie@npm:0.6.0"
+  checksum: 10/c1f8f2ea7d443b9331680598b0ae4e6af18a618c37606d1bbdc75bec8361cce09fe93e727059a673f2ba24467131a9fb5a4eec76bb1b149c1b3e1ccb268dc583
   languageName: node
   linkType: hard
 

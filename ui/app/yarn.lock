@@ -552,14 +552,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.48.1":
-  version: 1.48.1
-  resolution: "@playwright/test@npm:1.48.1"
+"@playwright/test@npm:^1.48.2":
+  version: 1.48.2
+  resolution: "@playwright/test@npm:1.48.2"
   dependencies:
-    playwright: "npm:1.48.1"
+    playwright: "npm:1.48.2"
   bin:
     playwright: cli.js
-  checksum: 10/26fe791868a965790bb39e434a799d743261fb073fa0bec49435e0f2d1aceca99dc2f408fc64b0e2d4c07984021059b27096d4477b989e990b551cf60e2652e6
+  checksum: 10/8557f9d60b93b9a60b66599d46f991b56df26b691f9285e8755298dabd9f42d1421c330a7d7578b76445fdd56040fe790d3f1081daa80e5e89a380170e0fd217
   languageName: node
   linkType: hard
 
@@ -794,18 +794,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-static@npm:^3.0.5":
-  version: 3.0.5
-  resolution: "@sveltejs/adapter-static@npm:3.0.5"
+"@sveltejs/adapter-static@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "@sveltejs/adapter-static@npm:3.0.6"
   peerDependencies:
     "@sveltejs/kit": ^2.0.0
-  checksum: 10/8e047f4ef4cb6f02088604ccc62848b5f83ccab4e0f692e2bd8103f0223a88ab9cd868c789487686df1021b6efe737b19a658943ae60cb0d36643efc13374442
+  checksum: 10/ee377c59da6c92ebe26115d745b688e65e2533c6a86018be54696fba5a7f1a02539c1053c5888816ccb5252020419e16151057a2b8aa0464996767f2e00e382f
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "@sveltejs/kit@npm:2.7.2"
+"@sveltejs/kit@npm:^2.7.3":
+  version: 2.7.3
+  resolution: "@sveltejs/kit@npm:2.7.3"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^0.6.0"
@@ -825,7 +825,7 @@ __metadata:
     vite: ^5.0.3
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/69c23c18aec91942100a174830fa1970672ee8d4b114f95e721cbf9a69d63693cd0a91b036c3c35aa22ed063e8e66d70afa6ce45e47964c1d6bc82c8699bf547
+  checksum: 10/5152a772d155eba4e4e00fd8bbc3e837a83f74e34a24b730e36816fa8de73e1ed2ffc5c059d1ee15df8ac240b28ba573e5a3a3c3ae5fad523e675ff3b4381e53
   languageName: node
   linkType: hard
 
@@ -1098,9 +1098,9 @@ __metadata:
   resolution: "app@workspace:."
   dependencies:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
-    "@playwright/test": "npm:^1.48.1"
-    "@sveltejs/adapter-static": "npm:^3.0.5"
-    "@sveltejs/kit": "npm:^2.7.2"
+    "@playwright/test": "npm:^1.48.2"
+    "@sveltejs/adapter-static": "npm:^3.0.6"
+    "@sveltejs/kit": "npm:^2.7.3"
     "@sveltejs/vite-plugin-svelte": "npm:^3.1.2"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.13.0"
@@ -1109,7 +1109,7 @@ __metadata:
     globals: "npm:^15.11.0"
     prettier: "npm:^3.3.3"
     prettier-plugin-svelte: "npm:^3.2.7"
-    svelte: "npm:^5.0.5"
+    svelte: "npm:^5.1.3"
     svelte-check: "npm:^4.0.5"
     vite: "npm:^5.4.10"
     vitest: "npm:^2.1.3"
@@ -2615,27 +2615,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.48.1":
-  version: 1.48.1
-  resolution: "playwright-core@npm:1.48.1"
+"playwright-core@npm:1.48.2":
+  version: 1.48.2
+  resolution: "playwright-core@npm:1.48.2"
   bin:
     playwright-core: cli.js
-  checksum: 10/81b51d288be78b75898470eb192ef0bc65594eebfb5f7602d83ba2505e1d2163c9923a0d7bae46779d5f3a16e1daf392acfbccde01d9f302cdf90bf2b21b8988
+  checksum: 10/dd029f797b1afb2240713a032fecc50e1ffc5464a39c075570cf10e929c145da3a8d0951a3f2b279e33b2f09cbeb8ff4330822cb1078452c0c75cc4ce34ca171
   languageName: node
   linkType: hard
 
-"playwright@npm:1.48.1":
-  version: 1.48.1
-  resolution: "playwright@npm:1.48.1"
+"playwright@npm:1.48.2":
+  version: 1.48.2
+  resolution: "playwright@npm:1.48.2"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.48.1"
+    playwright-core: "npm:1.48.2"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/39e231af3d9e576ba835813c5319b8773d8536ba54c7e34c7004cf06fadb412b6bbfc91badf4bb5cda3f138e5a8994c314de4c76d06d9424430e415f86fb3dd1
+  checksum: 10/331af352504336f419cdf1369f0ef399c6f0e905fdb79a5e97c41f33e74766efd21430ab6ae2de0b237ae765ebfbe701e119a990d8dc01bcdac3bc43c1fa1fbf
   languageName: node
   linkType: hard
 
@@ -3168,9 +3168,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "svelte@npm:5.0.5"
+"svelte@npm:^5.1.3":
+  version: 5.1.3
+  resolution: "svelte@npm:5.1.3"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3185,7 +3185,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/4ff0b1c8af41a4a12b5483de8a47b4c8e745deffa8bbd17ff79638ffcb3a0402279f264319375d1f60ab17725328cdf4ad0e41f9adea4e732317d2440e27ac04
+  checksum: 10/90f691075f7259886d7d6a4e486a81fbc78ed2ad1e0fc40d32eb6d7e8c579efc3814fecf1c65458a381f6569833fa384ce4ec1328552acb39314d064791d3530
   languageName: node
   linkType: hard
 

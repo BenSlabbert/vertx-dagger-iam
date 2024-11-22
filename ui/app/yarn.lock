@@ -552,14 +552,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.48.2":
-  version: 1.48.2
-  resolution: "@playwright/test@npm:1.48.2"
+"@playwright/test@npm:^1.49.0":
+  version: 1.49.0
+  resolution: "@playwright/test@npm:1.49.0"
   dependencies:
-    playwright: "npm:1.48.2"
+    playwright: "npm:1.49.0"
   bin:
     playwright: cli.js
-  checksum: 10/8557f9d60b93b9a60b66599d46f991b56df26b691f9285e8755298dabd9f42d1421c330a7d7578b76445fdd56040fe790d3f1081daa80e5e89a380170e0fd217
+  checksum: 10/e87485ab4c02b6dc0bc20a43ea3965c949c45caa4e7f5beea4a0abd29be0a318662931e887072db0d165f8dde93709b97ea1b2c6f4c833b403aa13427d76dd22
   languageName: node
   linkType: hard
 
@@ -1097,7 +1097,7 @@ __metadata:
   resolution: "app@workspace:."
   dependencies:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
-    "@playwright/test": "npm:^1.48.2"
+    "@playwright/test": "npm:^1.49.0"
     "@sveltejs/adapter-static": "npm:^3.0.6"
     "@sveltejs/kit": "npm:^2.8.1"
     "@sveltejs/vite-plugin-svelte": "npm:^3.1.2"
@@ -1107,8 +1107,8 @@ __metadata:
     eslint-plugin-svelte: "npm:^2.46.0"
     globals: "npm:^15.12.0"
     prettier: "npm:^3.3.3"
-    prettier-plugin-svelte: "npm:^3.2.8"
-    svelte: "npm:^5.2.2"
+    prettier-plugin-svelte: "npm:^3.3.1"
+    svelte: "npm:^5.2.7"
     svelte-check: "npm:^4.0.9"
     vite: "npm:^5.4.11"
     vitest: "npm:^2.1.5"
@@ -2654,27 +2654,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.48.2":
-  version: 1.48.2
-  resolution: "playwright-core@npm:1.48.2"
+"playwright-core@npm:1.49.0":
+  version: 1.49.0
+  resolution: "playwright-core@npm:1.49.0"
   bin:
     playwright-core: cli.js
-  checksum: 10/dd029f797b1afb2240713a032fecc50e1ffc5464a39c075570cf10e929c145da3a8d0951a3f2b279e33b2f09cbeb8ff4330822cb1078452c0c75cc4ce34ca171
+  checksum: 10/ef9c708293adab100337ed7fd8e61660be381707fc2b84f07b5f40d1ead44feb6a8e52fef98075e594522229d15a9ad56dd1471689cfa59409bec6447c22944d
   languageName: node
   linkType: hard
 
-"playwright@npm:1.48.2":
-  version: 1.48.2
-  resolution: "playwright@npm:1.48.2"
+"playwright@npm:1.49.0":
+  version: 1.49.0
+  resolution: "playwright@npm:1.49.0"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.48.2"
+    playwright-core: "npm:1.49.0"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/331af352504336f419cdf1369f0ef399c6f0e905fdb79a5e97c41f33e74766efd21430ab6ae2de0b237ae765ebfbe701e119a990d8dc01bcdac3bc43c1fa1fbf
+  checksum: 10/1fb198d09d388ec46cc2f0fc6b889a8bde8a75066ded82d35f08ba333091ebf3fc4ddf11263a86058a7078c7238ec4f23a86a9f1dc3ebd4f610c9eb07841fb32
   languageName: node
   linkType: hard
 
@@ -2764,13 +2764,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^3.2.8":
-  version: 3.2.8
-  resolution: "prettier-plugin-svelte@npm:3.2.8"
+"prettier-plugin-svelte@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "prettier-plugin-svelte@npm:3.3.1"
   peerDependencies:
     prettier: ^3.0.0
     svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
-  checksum: 10/c9f575e65b20f21b892a7850d06a1cd3860b9f179fdf131066b08f5e6b4af88278026392e05b4981ab6cf49fb707c1051cbdea421b9486e208baee4599253b79
+  checksum: 10/7c6e2e0d43bcd4d0d3eb17e2eb60e86548d3669024c6605d499623de777a65f777d07baabc2e0432126b1befda7e0ab957256159dfe77b959bc9ae95f2c68ba3
   languageName: node
   linkType: hard
 
@@ -3207,9 +3207,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "svelte@npm:5.2.2"
+"svelte@npm:^5.2.7":
+  version: 5.2.7
+  resolution: "svelte@npm:5.2.7"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3224,7 +3224,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/6975f7613d532f19808d1a7011240735bc3499f7f188d361cbf18affa4661956cd68efeec1c259829e6f045a66ff3a532fffa94955375a1eaaddef323896b115
+  checksum: 10/85fdcca566e19c9f1b53156a693dc2161acdb5a99ccb22c4a6cc7e69fbefba496d31f427d25e01b309923ca74c154d9ae5d0497aec30fd4b77f2d9bc8f50ef91
   languageName: node
   linkType: hard
 

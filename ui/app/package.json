@@ -18,7 +18,7 @@
 		"@benslabbert/vertx-dagger-ui-lib": "^1.14.0",
 		"@playwright/test": "^1.49.1",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.15.1",
+		"@sveltejs/kit": "^2.15.2",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@types/eslint": "^9.6.1",
 		"eslint": "^9.17.0",
@@ -27,7 +27,7 @@
 		"globals": "^15.14.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.2",
-		"svelte": "^5.16.0",
+		"svelte": "^5.16.6",
 		"svelte-check": "^4.1.1",
 		"vite": "^5.4.11",
 		"vitest": "^2.1.8"

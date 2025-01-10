@@ -1143,8 +1143,8 @@ __metadata:
     globals: "npm:^15.14.0"
     prettier: "npm:^3.4.2"
     prettier-plugin-svelte: "npm:^3.3.2"
-    svelte: "npm:^5.16.6"
-    svelte-check: "npm:^4.1.1"
+    svelte: "npm:^5.17.3"
+    svelte-check: "npm:^4.1.3"
     vite: "npm:^6.0.7"
     vitest: "npm:^2.1.8"
   languageName: unknown
@@ -3236,9 +3236,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^4.1.1":
-  version: 4.1.1
-  resolution: "svelte-check@npm:4.1.1"
+"svelte-check@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "svelte-check@npm:4.1.3"
   dependencies:
     "@jridgewell/trace-mapping": "npm:^0.3.25"
     chokidar: "npm:^4.0.1"
@@ -3250,7 +3250,7 @@ __metadata:
     typescript: ">=5.0.0"
   bin:
     svelte-check: bin/svelte-check
-  checksum: 10/6aaa5e6027b5acb9f4b298280858b7465c902890e41b2eea2c4d9227382ff10b00841e157a81225eaecec7c019cfe063eee888204576a3443efac497122eb6f6
+  checksum: 10/630211e999ab8d69279a4dc43dedefe2fe36b54ec2cfa16349ac3600b3fa43cf6986777315a71b6aecc2eed96de6d4df36e8261ebdb0bdf5cd2db92d3c3c1bc4
   languageName: node
   linkType: hard
 
@@ -3281,9 +3281,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.16.6":
-  version: 5.16.6
-  resolution: "svelte@npm:5.16.6"
+"svelte@npm:^5.17.3":
+  version: 5.17.3
+  resolution: "svelte@npm:5.17.3"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3299,7 +3299,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/adfa83aecd5fc0e2ebc999d2afb6ea019f5a0d5448329a61a776789da6b794dc1b1489d01251f57446e510208594d94db799dabb744becb059f7358ed16b6e47
+  checksum: 10/1b704fc892eb3dcb404ec6e5263064775c0f7296e0c481228ffb516ce6f2109a8482baa12b7e55e6ac06377f36cd1fe92128a676d1119af4e5b79c12d4a557ae
   languageName: node
   linkType: hard
 

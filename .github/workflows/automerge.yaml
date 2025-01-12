@@ -8,15 +8,14 @@ name: "Auto Merge Dependabot PRs"
     - "synchronize"
 jobs:
   auto-merge:
-    if: "${{ github.actor == 'dependabot[bot]' }} || ${{ github.actor == 'BenSlabbert' }}"
+    if: "${{ github.actor == 'dependabot[bot]' }} || ${{ github.actor == 'BenSlabbert'\
+      \ }}"
     runs-on: "ubuntu-latest"
     env:
       GH_TOKEN: "${{ secrets.GH_TOKEN }}"
     steps:
     - name: "Checkout repository"
       uses: "actions/checkout@v4"
-    - name: "Install GitHub CLI"
-      run: "sudo apt-get install -y gh"
     - name: "Auto-merge Dependabot PRs"
       run: "PR_LABEL=$(gh pr view ${{ github.event.pull_request.number }} --json labels\
         \ --jq '.labels[].name' | grep -i 'automerge')\nif [ \"$PR_LABEL\" == \"automerge\"\

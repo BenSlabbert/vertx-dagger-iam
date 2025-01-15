@@ -1145,7 +1145,7 @@ __metadata:
     globals: "npm:^15.14.0"
     prettier: "npm:^3.4.2"
     prettier-plugin-svelte: "npm:^3.3.3"
-    svelte: "npm:^5.17.4"
+    svelte: "npm:^5.18.0"
     svelte-check: "npm:^4.1.4"
     vite: "npm:^6.0.7"
     vitest: "npm:^2.1.8"
@@ -1835,12 +1835,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esrap@npm:^1.4.2":
-  version: 1.4.2
-  resolution: "esrap@npm:1.4.2"
+"esrap@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "esrap@npm:1.4.3"
   dependencies:
     "@jridgewell/sourcemap-codec": "npm:^1.4.15"
-  checksum: 10/e251ac3fc35b931caec0e228d96e333bbc291daea83d4d5658f91ae33469ec6e455d0d82146082620dce29ff92721264259496c089b4a3b2dd85d546984c6a5a
+  checksum: 10/c0f473aab71db2c78886ab6b88c13e0796660af759db26984b8f64db67fe482d02917223c296f210c3ad42f6d5face761774a804ea899b74d5adfa0eea8dc04d
   languageName: node
   linkType: hard
 
@@ -3295,9 +3295,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.17.4":
-  version: 5.17.4
-  resolution: "svelte@npm:5.17.4"
+"svelte@npm:^5.18.0":
+  version: 5.18.0
+  resolution: "svelte@npm:5.18.0"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3308,12 +3308,12 @@ __metadata:
     axobject-query: "npm:^4.1.0"
     clsx: "npm:^2.1.1"
     esm-env: "npm:^1.2.1"
-    esrap: "npm:^1.4.2"
+    esrap: "npm:^1.4.3"
     is-reference: "npm:^3.0.3"
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/7328e06a32c1dcf1b929c3944325489a5e70500d71e40ff31f83c5a84db6442b240f84178f684d8ffa8030ea695e7ecd25eb6d0a9732c9e776a993dae2170142
+  checksum: 10/be8a1e1a22c734654cdbfea07e49f8f66e178ab1df1049938d9201825e54a33460d7937a4cf94b1a9fafdf79d6a7aa45d50284f1a137a62901a43b29989813cd
   languageName: node
   linkType: hard
 

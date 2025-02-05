@@ -27,7 +27,7 @@
       <artifactId>annotation</artifactId>
     </dependency>
     <dependency>
-      <groupId>github.benslabbert.jsonwriter</groupId>
+      <groupId>github.benslabbert.vertx-json-writer</groupId>
       <artifactId>annotation</artifactId>
     </dependency>
     <dependency>
@@ -63,6 +63,10 @@
       <groupId>io.netty</groupId>
       <artifactId>netty-transport-native-epoll</artifactId>
       <classifier>linux-x86_64</classifier>
+    </dependency>
+    <dependency>
+      <groupId>github.benslabbert.vertx-dagger-commons</groupId>
+      <artifactId>redis</artifactId>
     </dependency>
     <dependency>
       <groupId>github.benslabbert.vertx-dagger-starter</groupId>
@@ -110,6 +114,10 @@
       <artifactId>vertx-web-validation</artifactId>
     </dependency>
     <dependency>
+      <groupId>github.benslabbert.vertx-dagger-commons</groupId>
+      <artifactId>web</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.auto.value</groupId>
       <artifactId>auto-value-annotations</artifactId>
       <scope>provided</scope>
@@ -120,77 +128,8 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>github.benslabbert.vertx-dagger-commons</groupId>
-      <artifactId>commons</artifactId>
-      <classifier>tests</classifier>
-      <type>test-jar</type>
-      <scope>test</scope>
-    </dependency>
-    <!--overriding rest-assured transitive deps-->
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.microsoft.playwright</groupId>
-      <artifactId>playwright</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-junit5</artifactId>
+      <artifactId>commons-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -222,9 +161,9 @@
               <version>${google-auto-value.version}</version>
             </path>
             <path>
-              <groupId>github.benslabbert.jsonwriter</groupId>
+              <groupId>github.benslabbert.vertx-json-writer</groupId>
               <artifactId>processor</artifactId>
-              <version>${jsonwriter.version}</version>
+              <version>${vertx-json-writer.version}</version>
             </path>
             <path>
               <groupId>github.benslabbert.vertx-dagger-codegen</groupId>

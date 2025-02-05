@@ -3,7 +3,7 @@ package github.benslabbert.vertxdaggeriam.web.dto;
 
 import com.google.auto.value.AutoBuilder;
 import com.google.common.collect.ImmutableList;
-import github.benslabbert.jsonwriter.annotation.JsonWriter;
+import github.benslabbert.vertxjsonwriter.annotation.JsonWriter;
 import io.vertx.core.json.JsonObject;
 import java.util.List;
 

@@ -1,9 +1,9 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriamrpc;
 
-import github.benslabbert.vertxdaggercommons.ConfigEncoder;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.config.Config.HttpConfig;
+import github.benslabbert.vertxdaggercommons.test.ConfigEncoder;
 import github.benslabbert.vertxdaggeriamrpc.ioc.DaggerTestProvider;
 import github.benslabbert.vertxdaggeriamrpc.ioc.TestProvider;
 import io.vertx.core.DeploymentOptions;

@@ -1,11 +1,11 @@
 /* Licensed under Apache-2.0 2023. */
 package github.benslabbert.vertxdaggeriam;
 
-import github.benslabbert.vertxdaggercommons.ConfigEncoder;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.config.Config.HttpConfig;
 import github.benslabbert.vertxdaggercommons.config.Config.RedisConfig;
-import github.benslabbert.vertxdaggercommons.docker.DockerContainers;
+import github.benslabbert.vertxdaggercommons.test.ConfigEncoder;
+import github.benslabbert.vertxdaggercommons.test.DockerContainers;
 import github.benslabbert.vertxdaggeriam.ioc.DaggerProvider;
 import github.benslabbert.vertxdaggeriam.ioc.Provider;
 import github.benslabbert.vertxdaggeriam.verticle.ApiVerticle;

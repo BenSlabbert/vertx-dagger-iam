@@ -23,11 +23,11 @@
 		"@types/eslint": "^9.6.1",
 		"eslint": "^9.21.0",
 		"eslint-config-prettier": "^10.0.2",
-		"eslint-plugin-svelte": "^3.0.2",
+		"eslint-plugin-svelte": "^3.0.3",
 		"globals": "^16.0.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.3.3",
-		"svelte": "^5.22.2",
+		"svelte": "^5.22.5",
 		"svelte-check": "^4.1.4",
 		"vite": "^6.2.0",
 		"vitest": "^3.0.7"

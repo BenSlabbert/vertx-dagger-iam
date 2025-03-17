@@ -903,9 +903,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.19.0":
-  version: 2.19.0
-  resolution: "@sveltejs/kit@npm:2.19.0"
+"@sveltejs/kit@npm:^2.19.2":
+  version: 2.19.2
+  resolution: "@sveltejs/kit@npm:2.19.2"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^0.6.0"
@@ -924,7 +924,7 @@ __metadata:
     vite: ^5.0.3 || ^6.0.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/d0e886d95d13506576ed92a3ebb75fceb50cbfa6a3df91c34daddeec84fa5cc37724822b413c4482177e27341a30d0910b385ef942b9225a3578e1ee6c12a36f
+  checksum: 10/683208dc5f6231e6f40d116f7a6653caf609526dd66a136a977084c1d76e075950dc7b1eacc35a83a7c004b1a66f2e08b5997f2be92a258bb9508d061eabcfbc
   languageName: node
   linkType: hard
 
@@ -1188,18 +1188,18 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.51.0"
     "@sveltejs/adapter-static": "npm:^3.0.8"
-    "@sveltejs/kit": "npm:^2.19.0"
+    "@sveltejs/kit": "npm:^2.19.2"
     "@sveltejs/vite-plugin-svelte": "npm:^5.0.3"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.22.0"
     eslint-config-prettier: "npm:^10.1.1"
-    eslint-plugin-svelte: "npm:^3.1.0"
+    eslint-plugin-svelte: "npm:^3.2.0"
     globals: "npm:^16.0.0"
     prettier: "npm:^3.5.3"
     prettier-plugin-svelte: "npm:^3.3.3"
-    svelte: "npm:^5.23.0"
+    svelte: "npm:^5.23.1"
     svelte-check: "npm:^4.1.5"
-    vite: "npm:^6.2.1"
+    vite: "npm:^6.2.2"
     vitest: "npm:^3.0.8"
   languageName: unknown
   linkType: soft
@@ -1729,9 +1729,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-svelte@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "eslint-plugin-svelte@npm:3.1.0"
+"eslint-plugin-svelte@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "eslint-plugin-svelte@npm:3.2.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.1"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -1749,7 +1749,7 @@ __metadata:
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 10/6a7b9cf94cacd291813c152af4c69b62d60cef6159d2b7f4175a8b48d3cb05d5618e94a95d6144e5127884d59afef1eab64984f1e939d9df6c159657db9459fb
+  checksum: 10/b0d020c8b1319c331494e42d58118273415c130b3a01c2d5078d9b518e1dabcc0f2f38704574b8ca34e732db76d9859840d432f892e8e0954da2d9b5531bc249
   languageName: node
   linkType: hard
 
@@ -3318,9 +3318,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.23.0":
-  version: 5.23.0
-  resolution: "svelte@npm:5.23.0"
+"svelte@npm:^5.23.1":
+  version: 5.23.1
+  resolution: "svelte@npm:5.23.1"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3336,7 +3336,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/1a37617166e915c189d97d744feefe6c3c9430b9831da600ae64cab279d56901e8a3c6aea28254c1216c69c6897127798e57705785ea561d965d6cb3213f4e41
+  checksum: 10/a79c647aec0c2a0b59c9101b90cd88db5c701a8a0b831e00f035288c9e1c3b125a5563c54b330a537d7eeec803e9af0df830090e70d5f3360725ffab791d4da3
   languageName: node
   linkType: hard
 
@@ -3506,9 +3506,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.2.1":
-  version: 6.2.1
-  resolution: "vite@npm:6.2.1"
+"vite@npm:^6.2.2":
+  version: 6.2.2
+  resolution: "vite@npm:6.2.2"
   dependencies:
     esbuild: "npm:^0.25.0"
     fsevents: "npm:~2.3.3"
@@ -3554,7 +3554,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/a37cbc33a3d9746434e8e96614dd6d8d45d821e61e9d266f389808da290b3128ac93ba0059ab09a098cdeab8b790d6d3ae7cdd5e1ce7d55c31b8bece650b3790
+  checksum: 10/30896cbdbc082131cca3a343461ada8c2e8c30eed640dfaca39fd44b2f2fa4a1a312fe298e037063106af09f3026239be822a6b2f49e3d8239b8a64e86e83193
   languageName: node
   linkType: hard
 

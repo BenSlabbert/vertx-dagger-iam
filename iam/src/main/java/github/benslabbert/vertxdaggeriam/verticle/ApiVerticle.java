@@ -172,8 +172,8 @@ public class ApiVerticle extends AbstractVerticle {
               log.debug("doing redis health check");
               redisAPI
                   .ping(List.of())
-                  .onSuccess(_ -> promise.complete(Status.OK()))
-                  .onFailure(_ -> promise.complete(Status.KO()));
+                  .onSuccess(ignore -> promise.complete(Status.OK()))
+                  .onFailure(ignore -> promise.complete(Status.KO()));
             });
   }
 

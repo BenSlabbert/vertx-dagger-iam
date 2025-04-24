@@ -5,7 +5,7 @@
   <parent>
     <groupId>github.benslabbert</groupId>
     <artifactId>vertx-dagger-bom</artifactId>
-    <version>1.118.0</version>
+    <version>3.2.0</version>
   </parent>
 
   <groupId>github.benslabbert.vertx-dagger-iam</groupId>
@@ -38,28 +38,26 @@
     <shade.skip>${quickly}</shade.skip>
 
     <!--deps-->
-    <vertx-json-writer.version>1.92.0</vertx-json-writer.version>
-    <vertx-dagger-commons.version>1.110.0</vertx-dagger-commons.version>
+    <vertx-json-writer.version>1.94.0</vertx-json-writer.version>
+    <vertx-dagger-commons.version>1.113.0</vertx-dagger-commons.version>
     <vertx-dagger-codegen.version>1.55.0</vertx-dagger-codegen.version>
-    <vertx-dagger-starter.version>1.113.0</vertx-dagger-starter.version>
-    <vertx-dagger-app-api.version>1.110.0</vertx-dagger-app-api.version>
-    <!--https://github.com/google/dagger/issues/4658-->
-    <dagger.version>2.56.2</dagger.version>
+    <vertx-dagger-starter.version>1.118.0</vertx-dagger-starter.version>
+    <vertx-dagger-app-api.version>1.111.0</vertx-dagger-app-api.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>github.benslabbert.vertx-dagger-codegen</groupId>
+        <groupId>github.benslabbert.vertx-dagger-app-api</groupId>
         <artifactId>bom</artifactId>
-        <version>${vertx-dagger-codegen.version}</version>
+        <version>${vertx-dagger-app-api.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>github.benslabbert.vertx-json-writer</groupId>
+        <groupId>github.benslabbert.vertx-dagger-codegen</groupId>
         <artifactId>bom</artifactId>
-        <version>${vertx-json-writer.version}</version>
+        <version>${vertx-dagger-codegen.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -71,120 +69,20 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>github.benslabbert.vertx-dagger-app-api</groupId>
-        <artifactId>bom</artifactId>
-        <version>${vertx-dagger-app-api.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
         <groupId>github.benslabbert.vertx-dagger-starter</groupId>
         <artifactId>bom</artifactId>
         <version>${vertx-dagger-starter.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>github.benslabbert.vertx-json-writer</groupId>
+        <artifactId>bom</artifactId>
+        <version>${vertx-json-writer.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.diffplug.spotless</groupId>
-        <artifactId>spotless-maven-plugin</artifactId>
-        <configuration>
-          <yaml>
-            <includes>
-              <include>**/*.yaml</include>
-              <include>**/*.yml</include>
-            </includes>
-            <excludes>
-              <exclude>**/helm/**</exclude>
-              <exclude>**/node_modules/**</exclude>
-            </excludes>
-            <jackson />
-          </yaml>
-          <pom>
-            <includes>
-              <include>pom.xml</include>
-            </includes>
-            <sortPom>
-              <encoding>UTF-8</encoding>
-              <lineSeparator>${line.separator}</lineSeparator>
-              <expandEmptyElements>false</expandEmptyElements>
-              <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
-              <keepBlankLines>true</keepBlankLines>
-              <nrOfIndentSpace>2</nrOfIndentSpace>
-              <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
-              <sortDependencies>scope,group,artifactId</sortDependencies>
-              <sortPlugins>groupId,artifactId</sortPlugins>
-            </sortPom>
-          </pom>
-          <markdown>
-            <includes>
-              <include>**/*.md</include>
-            </includes>
-            <excludes>
-              <exclude>**/node_modules/**</exclude>
-            </excludes>
-            <flexmark />
-          </markdown>
-          <java>
-            <includes>
-              <include>src/main/**/*.java</include>
-              <include>src/test/**/*.java</include>
-            </includes>
-            <googleJavaFormat>
-              <style>GOOGLE</style>
-              <reflowLongStrings>true</reflowLongStrings>
-            </googleJavaFormat>
-            <formatAnnotations />
-            <licenseHeader>
-              <content>/* Licensed under Apache-2.0 $YEAR. */</content>
-              <delimiter>package</delimiter>
-            </licenseHeader>
-          </java>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-            <phase>verify</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>flatten-maven-plugin</artifactId>
-        <configuration>
-          <updatePomFile>true</updatePomFile>
-          <flattenMode>resolveCiFriendliesOnly</flattenMode>
-          <outputDirectory>${project.build.directory}</outputDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>flatten</id>
-            <goals>
-              <goal>flatten</goal>
-            </goals>
-            <phase>process-resources</phase>
-          </execution>
-          <execution>
-            <id>flatten.clean</id>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-            <phase>clean</phase>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

@@ -41,8 +41,8 @@
     <vertx-json-writer.version>1.97.0</vertx-json-writer.version>
     <vertx-dagger-commons.version>1.116.0</vertx-dagger-commons.version>
     <vertx-dagger-codegen.version>2.3.0</vertx-dagger-codegen.version>
-    <vertx-dagger-starter.version>1.119.0</vertx-dagger-starter.version>
-    <vertx-dagger-app-api.version>1.112.0</vertx-dagger-app-api.version>
+    <vertx-dagger-starter.version>1.121.0</vertx-dagger-starter.version>
+    <vertx-dagger-app-api.version>1.113.0</vertx-dagger-app-api.version>
   </properties>
 
   <dependencyManagement>

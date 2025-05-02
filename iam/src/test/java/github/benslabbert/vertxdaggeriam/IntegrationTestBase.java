@@ -62,18 +62,18 @@ public abstract class IntegrationTestBase {
     JsonObject cfg = ConfigEncoder.encode(config);
     this.verticle = provider.apiVerticle();
 
-    vertx.deployVerticle(
-        verticle,
-        new DeploymentOptions().setConfig(cfg),
-        ar -> {
-          if (ar.succeeded()) {
-            RestAssured.baseURI = "http://127.0.0.1";
-            RestAssured.port = this.verticle.getPort();
-            testContext.completeNow();
-          } else {
-            testContext.failNow(ar.cause());
-          }
-        });
+    vertx
+        .deployVerticle(verticle, new DeploymentOptions().setConfig(cfg))
+        .onComplete(
+            ar -> {
+              if (ar.succeeded()) {
+                RestAssured.baseURI = "http://127.0.0.1";
+                RestAssured.port = this.verticle.getPort();
+                testContext.completeNow();
+              } else {
+                testContext.failNow(ar.cause());
+              }
+            });
   }
 
   @AfterEach

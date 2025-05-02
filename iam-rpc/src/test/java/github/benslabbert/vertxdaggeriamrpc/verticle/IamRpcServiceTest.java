@@ -22,7 +22,7 @@ class IamRpcServiceTest extends TestBase {
                 err ->
                     testContext.verify(
                         () -> {
-                          assertThat(err).isInstanceOf(IllegalStateException.class);
+                          assertThat(err).isInstanceOf(IllegalArgumentException.class);
                           assertThat(err).hasMessageContaining("Invalid format for JWT");
                           testContext.completeNow();
                         })));

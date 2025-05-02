@@ -132,48 +132,49 @@ class JwtServiceTest extends UnitTestBase {
 
     assertThat(token).isNotNull();
 
-    jwtAuth.authenticate(
-        new TokenCredentials(token),
-        testContext.succeeding(
-            user ->
-                testContext.verify(
-                    () -> {
-                      assertThat(user).isNotNull();
+    jwtAuth
+        .authenticate(new TokenCredentials(token))
+        .onComplete(
+            testContext.succeeding(
+                user ->
+                    testContext.verify(
+                        () -> {
+                          assertThat(user).isNotNull();
 
-                      JsonObject p = user.principal();
-                      assertThat(p).isNotNull();
-                      assertThat(p.stream().count()).isEqualTo(6L);
+                          JsonObject p = user.principal();
+                          assertThat(p).isNotNull();
+                          assertThat(p.stream().count()).isEqualTo(6L);
 
-                      JsonObject acl = p.getJsonObject("acl");
-                      assertThat(acl.getString("group")).isEqualTo("admin");
-                      assertThat(acl.getString("role")).isEqualTo("role");
-                      assertThat(acl.getJsonArray("permissions"))
-                          .containsExactlyInAnyOrder("p-1", "p-2");
+                          JsonObject acl = p.getJsonObject("acl");
+                          assertThat(acl.getString("group")).isEqualTo("admin");
+                          assertThat(acl.getString("role")).isEqualTo("role");
+                          assertThat(acl.getJsonArray("permissions"))
+                              .containsExactlyInAnyOrder("p-1", "p-2");
 
-                      assertThat(token).isEqualTo(p.getString("access_token"));
-                      assertThat(p.getString("aud")).isEqualTo("vertx-dagger-app");
-                      assertThat(p.getString("iss")).isEqualTo("iam");
-                      assertThat(p.getString("sub")).isEqualTo("name");
-                      assertThat(p.getString("additional-props")).isEqualTo("new-prop");
+                          assertThat(token).isEqualTo(p.getString("access_token"));
+                          assertThat(p.getString("aud")).isEqualTo("vertx-dagger-app");
+                          assertThat(p.getString("iss")).isEqualTo("iam");
+                          assertThat(p.getString("sub")).isEqualTo("name");
+                          assertThat(p.getString("additional-props")).isEqualTo("new-prop");
 
-                      JsonObject a = user.attributes();
-                      assertThat(a).isNotNull();
-                      assertThat(a.stream().count()).isEqualTo(5L);
+                          JsonObject a = user.attributes();
+                          assertThat(a).isNotNull();
+                          assertThat(a.stream().count()).isEqualTo(5L);
 
-                      JsonObject accessToken = a.getJsonObject("accessToken");
-                      assertThat(accessToken.getInteger("iat")).isNotNull();
-                      assertThat(accessToken.getInteger("exp")).isNotNull();
-                      assertThat(accessToken.getString("aud")).isEqualTo("vertx-dagger-app");
-                      assertThat(accessToken.getString("iss")).isEqualTo("iam");
-                      assertThat(accessToken.getString("sub")).isEqualTo("name");
+                          JsonObject accessToken = a.getJsonObject("accessToken");
+                          assertThat(accessToken.getInteger("iat")).isNotNull();
+                          assertThat(accessToken.getInteger("exp")).isNotNull();
+                          assertThat(accessToken.getString("aud")).isEqualTo("vertx-dagger-app");
+                          assertThat(accessToken.getString("iss")).isEqualTo("iam");
+                          assertThat(accessToken.getString("sub")).isEqualTo("name");
 
-                      assertThat(a.getInteger("exp")).isNotNull();
-                      assertThat(a.getInteger("iat")).isNotNull();
-                      assertThat(a.getString("sub")).isEqualTo("name");
-                      assertThat(a.getString("rootClaim")).isEqualTo("accessToken");
+                          assertThat(a.getInteger("exp")).isNotNull();
+                          assertThat(a.getInteger("iat")).isNotNull();
+                          assertThat(a.getString("sub")).isEqualTo("name");
+                          assertThat(a.getString("rootClaim")).isEqualTo("accessToken");
 
-                      testContext.completeNow();
-                    })));
+                          testContext.completeNow();
+                        })));
   }
 
   static Stream<Arguments> isValidRefreshSource() {
@@ -221,42 +222,44 @@ class JwtServiceTest extends UnitTestBase {
     var token = tokenService.refreshToken(username);
     assertThat(token).isNotNull();
 
-    jwtRefresh.authenticate(
-        new TokenCredentials(token),
-        testContext.succeeding(
-            user ->
-                testContext.verify(
-                    () -> {
-                      assertThat(user).isNotNull();
+    jwtRefresh
+        .authenticate(new TokenCredentials(token))
+        .onComplete(
+            testContext.succeeding(
+                user ->
+                    testContext.verify(
+                        () -> {
+                          assertThat(user).isNotNull();
 
-                      JsonObject p = user.principal();
-                      assertThat(p).isNotNull();
-                      assertThat(p.stream().count()).isEqualTo(5L);
+                          JsonObject p = user.principal();
+                          assertThat(p).isNotNull();
+                          assertThat(p.stream().count()).isEqualTo(5L);
 
-                      assertThat(token).isEqualTo(p.getString("access_token"));
-                      assertThat(p.getString("additional-props")).isEqualTo("new-prop");
-                      assertThat(p.getString("aud")).isEqualTo("vertx-dagger-app");
-                      assertThat(p.getString("iss")).isEqualTo("iam");
-                      assertThat(p.getString("sub")).isEqualTo(username);
+                          assertThat(token).isEqualTo(p.getString("access_token"));
+                          assertThat(p.getString("additional-props")).isEqualTo("new-prop");
+                          assertThat(p.getString("aud")).isEqualTo("vertx-dagger-app");
+                          assertThat(p.getString("iss")).isEqualTo("iam");
+                          assertThat(p.getString("sub")).isEqualTo(username);
 
-                      JsonObject a = user.attributes();
-                      assertThat(a).isNotNull();
-                      assertThat(a.stream().count()).isEqualTo(5L);
+                          JsonObject a = user.attributes();
+                          assertThat(a).isNotNull();
+                          assertThat(a.stream().count()).isEqualTo(5L);
 
-                      JsonObject accessToken = a.getJsonObject("accessToken");
-                      assertThat(accessToken.getString("additional-props")).isEqualTo("new-prop");
-                      assertThat(accessToken.getInteger("iat")).isNotNull();
-                      assertThat(accessToken.getInteger("exp")).isNotNull();
-                      assertThat(accessToken.getString("aud")).isEqualTo("vertx-dagger-app");
-                      assertThat(accessToken.getString("iss")).isEqualTo("iam");
-                      assertThat(accessToken.getString("sub")).isEqualTo(username);
+                          JsonObject accessToken = a.getJsonObject("accessToken");
+                          assertThat(accessToken.getString("additional-props"))
+                              .isEqualTo("new-prop");
+                          assertThat(accessToken.getInteger("iat")).isNotNull();
+                          assertThat(accessToken.getInteger("exp")).isNotNull();
+                          assertThat(accessToken.getString("aud")).isEqualTo("vertx-dagger-app");
+                          assertThat(accessToken.getString("iss")).isEqualTo("iam");
+                          assertThat(accessToken.getString("sub")).isEqualTo(username);
 
-                      assertThat(a.getInteger("exp")).isNotNull();
-                      assertThat(a.getInteger("iat")).isNotNull();
-                      assertThat(a.getString("sub")).isEqualTo(username);
-                      assertThat(a.getString("rootClaim")).isEqualTo("accessToken");
+                          assertThat(a.getInteger("exp")).isNotNull();
+                          assertThat(a.getInteger("iat")).isNotNull();
+                          assertThat(a.getString("sub")).isEqualTo(username);
+                          assertThat(a.getString("rootClaim")).isEqualTo("accessToken");
 
-                      testContext.completeNow();
-                    })));
+                          testContext.completeNow();
+                        })));
   }
 }

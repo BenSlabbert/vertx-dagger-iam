@@ -5,15 +5,12 @@ import static io.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
 
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.IamRpcService;
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.IamRpcServiceVertxEBProxyHandler;
-import github.benslabbert.vertxdaggercommons.auth.NoAuthRequiredAuthenticationProvider;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.healthchecks.HealthCheckHandler;
-import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
@@ -57,7 +54,6 @@ public class RpcVerticle extends AbstractVerticle {
     this.consumer =
         new IamRpcServiceVertxEBProxyHandler(vertx, iamRpcService)
             .register(vertx.eventBus(), IamRpcService.ADDRESS)
-            .setMaxBufferedMessages(100)
             .fetch(10)
             .exceptionHandler(err -> log.error("exception in event bus", err))
             .endHandler(ignore -> log.info("end handler"));
@@ -71,10 +67,6 @@ public class RpcVerticle extends AbstractVerticle {
         // 100kB max body size
         .handler(BodyHandler.create().setBodyLimit(1024L * 100L));
 
-    // main routes
-    mainRouter.get("/health*").handler(getHealthCheckHandler());
-    mainRouter.get("/ping*").handler(getPingHandler());
-
     // all unmatched requests go here
     mainRouter.route("/*").handler(ctx -> ctx.response().setStatusCode(NOT_FOUND.code()).end());
 
@@ -83,7 +75,8 @@ public class RpcVerticle extends AbstractVerticle {
     vertx
         .createHttpServer(new HttpServerOptions().setPort(httpConfig.port()).setHost("0.0.0.0"))
         .requestHandler(mainRouter)
-        .listen(
+        .listen()
+        .onComplete(
             res -> {
               if (res.succeeded()) {
                 log.info("started http server");
@@ -93,16 +86,6 @@ public class RpcVerticle extends AbstractVerticle {
                 startPromise.fail(res.cause());
               }
             });
-  }
-
-  private HealthCheckHandler getPingHandler() {
-    return HealthCheckHandler.create(vertx, NoAuthRequiredAuthenticationProvider.create())
-        .register("ping", promise -> promise.complete(Status.OK()));
-  }
-
-  private HealthCheckHandler getHealthCheckHandler() {
-    return HealthCheckHandler.create(vertx, NoAuthRequiredAuthenticationProvider.create())
-        .register("health", promise -> promise.complete(Status.OK()));
   }
 
   @SuppressWarnings("java:S106") // logger is not available

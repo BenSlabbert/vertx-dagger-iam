@@ -4,7 +4,6 @@ package github.benslabbert.vertxdaggeriam.verticle;
 import static io.netty.handler.codec.http.HttpResponseStatus.NOT_FOUND;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 
-import github.benslabbert.vertxdaggercommons.auth.NoAuthRequiredAuthenticationProvider;
 import github.benslabbert.vertxdaggercommons.closer.ClosingService;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggercommons.future.FutureUtil;
@@ -14,8 +13,6 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
-import io.vertx.ext.healthchecks.HealthCheckHandler;
-import io.vertx.ext.healthchecks.Status;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
@@ -23,7 +20,6 @@ import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.redis.client.RedisAPI;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
@@ -81,9 +77,6 @@ public class ApiVerticle extends AbstractVerticle {
     // api routes
     userHandler.configureRoutes(apiRouter);
 
-    mainRouter.get("/health*").handler(getHealthCheckHandler());
-    mainRouter.get("/ping*").handler(getPingHandler());
-
     StaticHandler staticHandler = StaticHandler.create("svelte");
 
     mainRouter
@@ -105,8 +98,8 @@ public class ApiVerticle extends AbstractVerticle {
 
               vertx
                   .fileSystem()
-                  .readFile(
-                      "svelte/index.html",
+                  .readFile("svelte/index.html")
+                  .onComplete(
                       ar -> {
                         if (ar.failed()) {
                           ctx.response().setStatusCode(NOT_FOUND.code()).end();
@@ -129,7 +122,8 @@ public class ApiVerticle extends AbstractVerticle {
                   .createHttpServer(
                       new HttpServerOptions().setPort(httpConfig.port()).setHost("0.0.0.0"))
                   .requestHandler(mainRouter)
-                  .listen(
+                  .listen()
+                  .onComplete(
                       res -> {
                         if (res.succeeded()) {
                           this.server = res.result();
@@ -158,25 +152,6 @@ public class ApiVerticle extends AbstractVerticle {
     return server.actualPort();
   }
 
-  private HealthCheckHandler getPingHandler() {
-    return HealthCheckHandler.create(vertx, NoAuthRequiredAuthenticationProvider.create())
-        .register("ping", promise -> promise.complete(Status.OK()));
-  }
-
-  private HealthCheckHandler getHealthCheckHandler() {
-    return HealthCheckHandler.create(vertx, NoAuthRequiredAuthenticationProvider.create())
-        .register(
-            "redis",
-            Duration.ofSeconds(5L).toMillis(),
-            promise -> {
-              log.debug("doing redis health check");
-              redisAPI
-                  .ping(List.of())
-                  .onSuccess(ignore -> promise.complete(Status.OK()))
-                  .onFailure(ignore -> promise.complete(Status.KO()));
-            });
-  }
-
   @SuppressWarnings("java:S106") // logger is not available
   @Override
   public void stop(Promise<Void> stopPromise) {
@@ -197,7 +172,7 @@ public class ApiVerticle extends AbstractVerticle {
 
     var multiCompletePromise = MultiCompletePromise.create(stopPromise, 2);
     if (null != server) {
-      server.close(multiCompletePromise::complete);
+      server.close().onComplete(multiCompletePromise::complete);
     } else {
       multiCompletePromise.complete();
     }

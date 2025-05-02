@@ -26,9 +26,8 @@ public abstract class TestBase {
     provider = DaggerTestProvider.builder().vertx(vertx).config(config).build();
 
     JsonObject cfg = ConfigEncoder.encode(config);
-    vertx.deployVerticle(
-        provider.rpcVerticle(),
-        new DeploymentOptions().setConfig(cfg),
-        testContext.succeedingThenComplete());
+    vertx
+        .deployVerticle(provider.rpcVerticle(), new DeploymentOptions().setConfig(cfg))
+        .onComplete(testContext.succeedingThenComplete());
   }
 }

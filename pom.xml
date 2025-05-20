@@ -38,11 +38,11 @@
     <shade.skip>${quickly}</shade.skip>
 
     <!--deps-->
-    <vertx-json-writer.version>1.111.0</vertx-json-writer.version>
-    <vertx-dagger-commons.version>1.133.0</vertx-dagger-commons.version>
-    <vertx-dagger-codegen.version>2.15.0</vertx-dagger-codegen.version>
-    <vertx-dagger-starter.version>1.136.0</vertx-dagger-starter.version>
-    <vertx-dagger-app-api.version>1.124.0</vertx-dagger-app-api.version>
+    <vertx-json-writer.version>1.112.0</vertx-json-writer.version>
+    <vertx-dagger-commons.version>1.134.0</vertx-dagger-commons.version>
+    <vertx-dagger-codegen.version>2.16.0</vertx-dagger-codegen.version>
+    <vertx-dagger-starter.version>1.137.0</vertx-dagger-starter.version>
+    <vertx-dagger-app-api.version>1.125.0</vertx-dagger-app-api.version>
   </properties>
 
   <dependencyManagement>

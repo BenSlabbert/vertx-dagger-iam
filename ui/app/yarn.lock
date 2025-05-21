@@ -1217,11 +1217,11 @@ __metadata:
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.27.0"
     eslint-config-prettier: "npm:^10.1.5"
-    eslint-plugin-svelte: "npm:^3.8.1"
+    eslint-plugin-svelte: "npm:^3.8.2"
     globals: "npm:^16.1.0"
     prettier: "npm:^3.5.3"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.31.1"
+    svelte: "npm:^5.32.1"
     svelte-check: "npm:^4.2.1"
     vite: "npm:^6.3.5"
     vitest: "npm:^3.1.4"
@@ -1742,9 +1742,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-svelte@npm:^3.8.1":
-  version: 3.8.1
-  resolution: "eslint-plugin-svelte@npm:3.8.1"
+"eslint-plugin-svelte@npm:^3.8.2":
+  version: 3.8.2
+  resolution: "eslint-plugin-svelte@npm:3.8.2"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.6.1"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -1762,7 +1762,7 @@ __metadata:
   peerDependenciesMeta:
     svelte:
       optional: true
-  checksum: 10/796dc66c816f43505ac4f1750a1a2de58b90f2d1de0c30c0832c458f94240b95d3bb8e3eef93c514eaa2a0521480487ca55c51fb9c9f4b0879724955601aad8e
+  checksum: 10/310db80ebf177ce13f16682111af2c340c2111a8ef71b519657b73dff6521b275e8306d84886f65034e3d1834bee7de4a3ada896a59eb5ff1e436d21f1fa4434
   languageName: node
   linkType: hard
 
@@ -3346,9 +3346,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.31.1":
-  version: 5.31.1
-  resolution: "svelte@npm:5.31.1"
+"svelte@npm:^5.32.1":
+  version: 5.32.1
+  resolution: "svelte@npm:5.32.1"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3364,7 +3364,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/6666f5cead4025d45a095e1558f7e1b4ba6e9c4d4c2117441c4d6ee87891123bffc4347ecb3aaf471ee70c74abafb3990bf0c06cc8525e15b9081712fe430058
+  checksum: 10/b1b2be5f1b8e90fa2184d4a232b500c08dc574fac303c9f6a41de95bcaa39cd81b2ac0715f47e3e2e548750465e77ac9152b3f35c4eba68ee88d164a04467492
   languageName: node
   linkType: hard
 

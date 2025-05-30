@@ -8,11 +8,6 @@ import io.vertx.core.json.JsonObject;
 @JsonWriter
 public record User(String username, String password, String refreshToken, ACL acl) {
 
-  public static final String USERNAME_FIELD = "username";
-  public static final String PASSWORD_FIELD = "password";
-  public static final String REFRESH_TOKEN_FIELD = "refreshToken";
-  public static final String ACl_FIELD = "acl";
-
   public static Builder builder() {
     return new AutoBuilder_User_Builder();
   }

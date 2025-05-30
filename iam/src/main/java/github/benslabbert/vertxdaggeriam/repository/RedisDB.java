@@ -6,7 +6,7 @@ import github.benslabbert.vertxdaggeriam.entity.ACL;
 import github.benslabbert.vertxdaggeriam.entity.User;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.Future;
-import io.vertx.core.impl.NoStackTraceException;
+import io.vertx.core.VertxException;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.handler.HttpException;
@@ -51,7 +51,7 @@ class RedisDB implements UserRepository, AutoCloseable {
               }
 
               if (ResponseType.BULK != resp.type()) {
-                throw new NoStackTraceException("expected BULK response type");
+                throw VertxException.noStackTrace("expected BULK response type");
               }
 
               JsonArray array = new JsonArray(resp.toBuffer());
@@ -61,7 +61,7 @@ class RedisDB implements UserRepository, AutoCloseable {
               }
 
               if (1 != array.size()) {
-                throw new NoStackTraceException("expected only one element in array");
+                throw VertxException.noStackTrace("expected only one element in array");
               }
 
               JsonObject o = (JsonObject) array.iterator().next();
@@ -72,8 +72,7 @@ class RedisDB implements UserRepository, AutoCloseable {
   @Override
   public Future<Void> login(String username, String password, String token, String refreshToken) {
     return redisAPI
-        .jsonGet(
-            List.of(prefixId(username), RedisConstants.DOCUMENT_ROOT_PREFIX + User.PASSWORD_FIELD))
+        .jsonGet(List.of(prefixId(username), RedisConstants.DOCUMENT_ROOT_PREFIX + "password"))
         .compose(
             resp -> {
               if (null == resp) {
@@ -103,9 +102,7 @@ class RedisDB implements UserRepository, AutoCloseable {
       String username, String oldRefreshToken, String newToken, String newRefreshToken) {
 
     return redisAPI
-        .jsonGet(
-            List.of(
-                prefixId(username), RedisConstants.DOCUMENT_ROOT_PREFIX + User.REFRESH_TOKEN_FIELD))
+        .jsonGet(List.of(prefixId(username), RedisConstants.DOCUMENT_ROOT_PREFIX + "refreshToken"))
         .compose(
             resp -> {
               if (null == resp) {
@@ -135,7 +132,7 @@ class RedisDB implements UserRepository, AutoCloseable {
       String role,
       Set<String> permissions) {
     if (permissions.isEmpty()) {
-      throw new NoStackTraceException("permissions cannot be empty");
+      throw VertxException.noStackTrace("permissions cannot be empty");
     }
 
     return redisAPI
@@ -169,7 +166,7 @@ class RedisDB implements UserRepository, AutoCloseable {
         .jsonSet(
             List.of(
                 prefixId(username),
-                RedisConstants.DOCUMENT_ROOT_PREFIX + User.ACl_FIELD,
+                RedisConstants.DOCUMENT_ROOT_PREFIX + "acl",
                 acl.toJson().encode(),
                 RedisConstants.SET_IF_EXIST))
         .map(
@@ -195,7 +192,7 @@ class RedisDB implements UserRepository, AutoCloseable {
         .jsonSet(
             List.of(
                 prefixId(username),
-                RedisConstants.DOCUMENT_ROOT_PREFIX + User.REFRESH_TOKEN_FIELD,
+                RedisConstants.DOCUMENT_ROOT_PREFIX + "refreshToken",
                 // must quote values back to redis
                 "\"" + newRefreshToken + "\"",
                 RedisConstants.SET_IF_EXIST))

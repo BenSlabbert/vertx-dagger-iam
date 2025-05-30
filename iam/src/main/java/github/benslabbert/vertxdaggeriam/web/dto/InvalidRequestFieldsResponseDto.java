@@ -4,6 +4,7 @@ package github.benslabbert.vertxdaggeriam.web.dto;
 import com.google.auto.value.AutoBuilder;
 import github.benslabbert.vertxjsonwriter.annotation.JsonWriter;
 import io.vertx.core.json.JsonObject;
+import io.vertx.json.schema.common.dsl.ObjectSchemaBuilder;
 
 @JsonWriter
 public record InvalidRequestFieldsResponseDto(String field, String message) {
@@ -14,6 +15,10 @@ public record InvalidRequestFieldsResponseDto(String field, String message) {
 
   public static InvalidRequestFieldsResponseDto fromJson(JsonObject json) {
     return InvalidRequestFieldsResponseDto_JsonWriter.fromJson(json);
+  }
+
+  public static ObjectSchemaBuilder schemaBuilder() {
+    return InvalidRequestFieldsResponseDto_JsonWriter.schemaBuilder();
   }
 
   public JsonObject toJson() {

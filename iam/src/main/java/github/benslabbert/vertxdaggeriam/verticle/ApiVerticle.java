@@ -160,13 +160,13 @@ public class ApiVerticle extends AbstractVerticle {
     Set<AutoCloseable> closeables = closingService.closeables();
     System.err.printf("closing created resources [%d]...%n", closeables.size());
 
-    int idx = 0;
+    int idx = 1;
     for (AutoCloseable service : closeables) {
       try {
         System.err.printf("closing: [%d/%d]%n", idx++, closeables.size());
         service.close();
       } catch (Exception e) {
-        System.err.println("unable to close resources: " + e);
+        System.err.println("unable to close resource: " + e);
       }
     }
 

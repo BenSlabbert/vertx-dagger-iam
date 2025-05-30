@@ -4,14 +4,11 @@ package github.benslabbert.vertxdaggeriam.entity;
 import com.google.auto.value.AutoBuilder;
 import github.benslabbert.vertxjsonwriter.annotation.JsonWriter;
 import io.vertx.core.json.JsonObject;
+import io.vertx.json.schema.common.dsl.ObjectSchemaBuilder;
 import java.util.Set;
 
 @JsonWriter
 public record ACL(String group, String role, Set<String> permissions) {
-
-  public static final String GROUP_FIELD = "group";
-  public static final String ROLE_FIELD = "role";
-  public static final String PERMISSIONS_FIELD = "permissions";
 
   public static Builder builder() {
     return new AutoBuilder_ACL_Builder();
@@ -19,6 +16,10 @@ public record ACL(String group, String role, Set<String> permissions) {
 
   public static ACL fromJson(JsonObject json) {
     return ACL_JsonWriter.fromJson(json);
+  }
+
+  public static ObjectSchemaBuilder schemaBuilder() {
+    return ACL_JsonWriter.schemaBuilder();
   }
 
   public JsonObject toJson() {

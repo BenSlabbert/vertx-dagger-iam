@@ -44,7 +44,7 @@ jobs:
     - name: "Set up Maven"
       uses: "stCarolas/setup-maven@v5"
       with:
-        maven-version: "3.9.9"
+        maven-version: "3.9.10"
     - run: "echo build triggered by: ${{ github.actor }}"
     - run: "npm set \"//npm.pkg.github.com/:_authToken=$GH_TOKEN\""
     - run: "node --version"

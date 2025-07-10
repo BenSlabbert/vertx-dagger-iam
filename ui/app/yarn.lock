@@ -602,9 +602,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.22.2":
-  version: 2.22.2
-  resolution: "@sveltejs/kit@npm:2.22.2"
+"@sveltejs/kit@npm:^2.22.4":
+  version: 2.22.4
+  resolution: "@sveltejs/kit@npm:2.22.4"
   dependencies:
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
     "@types/cookie": "npm:^0.6.0"
@@ -618,14 +618,13 @@ __metadata:
     sade: "npm:^1.8.1"
     set-cookie-parser: "npm:^2.6.0"
     sirv: "npm:^3.0.0"
-    vitefu: "npm:^1.0.6"
   peerDependencies:
     "@sveltejs/vite-plugin-svelte": ^3.0.0 || ^4.0.0-next.1 || ^5.0.0 || ^6.0.0-next.0
     svelte: ^4.0.0 || ^5.0.0-next.0
     vite: ^5.0.3 || ^6.0.0 || ^7.0.0-beta.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/316d0395d96e26a82f57cf0540b1465ea166a1b8afb05b4e52fb7648afe7523c0df816e9280dacd046547635643e6416e782d825e4fae6053f120b150d31cff6
+  checksum: 10/36b73243fff05862fde6a1132819d3233b95ed170d293087f1ec6573a01458e49199fcabca36afc7ef7a329545914db8bc13ba075bbeecac9e5365e8398f39c0
   languageName: node
   linkType: hard
 
@@ -932,7 +931,7 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.53.2"
     "@sveltejs/adapter-static": "npm:^3.0.8"
-    "@sveltejs/kit": "npm:^2.22.2"
+    "@sveltejs/kit": "npm:^2.22.4"
     "@sveltejs/vite-plugin-svelte": "npm:^5.1.0"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.30.1"
@@ -941,7 +940,7 @@ __metadata:
     globals: "npm:^16.3.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.35.4"
+    svelte: "npm:^5.35.5"
     svelte-check: "npm:^4.2.2"
     vite: "npm:^7.0.3"
     vitest: "npm:^3.2.4"
@@ -2981,9 +2980,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.35.4":
-  version: 5.35.4
-  resolution: "svelte@npm:5.35.4"
+"svelte@npm:^5.35.5":
+  version: 5.35.5
+  resolution: "svelte@npm:5.35.5"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -2999,7 +2998,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/c2513485d9d1f2e63e65b9a50f65182e65bd66974be2c07c99029517649bcad62c50beb22a8fefbb07d71e40be74d957626598dc1de6dd7c671d6f3149ffcbff
+  checksum: 10/f681043814d4588982b91bfb2e5ec0f9c2de23fee933142e10366420e64061e9ab274ff88dfed3c69820da205f9dd320ba0579133423a7f1e51a1957fb00aad6
   languageName: node
   linkType: hard
 

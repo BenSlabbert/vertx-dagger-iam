@@ -11,8 +11,11 @@ import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.RegisterRequestDto;
 import github.benslabbert.vertxdaggerapp.api.iam.auth.dto.UpdatePermissionsRequestDto;
 import github.benslabbert.vertxdaggercodegen.annotation.url.RestHandler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
+import io.vertx.core.http.Cookie;
+import io.vertx.core.http.CookieSameSite;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import java.time.Duration;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -52,7 +55,14 @@ public class UserHandler {
                       log.error("failed to login user", err);
                       ResponseWriter.writeError(ctx, err);
                     })
-                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED)));
+                .onSuccess(
+                    dto -> {
+                      if (RequestUtils.isRequestFromBrowser(ctx)) {
+                        writeCookie(ctx, dto.token(), dto.refreshToken());
+                      } else {
+                        ResponseWriter.write(ctx, dto.toJson(), CREATED);
+                      }
+                    }));
   }
 
   @RestHandler(path = "/refresh")
@@ -68,7 +78,14 @@ public class UserHandler {
                       log.error("failed to refresh user", err);
                       ResponseWriter.writeError(ctx, err);
                     })
-                .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), CREATED)));
+                .onSuccess(
+                    dto -> {
+                      if (RequestUtils.isRequestFromBrowser(ctx)) {
+                        writeCookie(ctx, dto.token(), dto.refreshToken());
+                      } else {
+                        ResponseWriter.write(ctx, dto.toJson(), CREATED);
+                      }
+                    }));
   }
 
   @RestHandler(path = "/register")
@@ -101,5 +118,29 @@ public class UserHandler {
                       ResponseWriter.writeError(ctx, err);
                     })
                 .onSuccess(dto -> ResponseWriter.write(ctx, dto.toJson(), NO_CONTENT)));
+  }
+
+  private static void writeCookie(RoutingContext ctx, String token, String refreshToken) {
+    log.debug("writing response in set-cookie");
+    var tokenCookie =
+        Cookie.cookie("iam-token", token)
+            .setPath("/")
+            .setDomain("localhost")
+            .setSameSite(CookieSameSite.NONE)
+            .setMaxAge(Duration.ofMinutes(5L).toSeconds());
+
+    var refreshTokenCookie =
+        Cookie.cookie("iam-refresh-token", refreshToken)
+            .setPath("/")
+            .setDomain("localhost")
+            .setSameSite(CookieSameSite.NONE)
+            .setMaxAge(Duration.ofMinutes(5L).toSeconds());
+
+    ctx.response()
+        .setStatusCode(CREATED.code())
+        .addCookie(tokenCookie)
+        .addCookie(refreshTokenCookie)
+        .end()
+        .onFailure(ctx::fail);
   }
 }

@@ -43,6 +43,9 @@
     <vertx-dagger-codegen.version>2.57.0</vertx-dagger-codegen.version>
     <vertx-dagger-starter.version>1.187.0</vertx-dagger-starter.version>
     <vertx-dagger-app-api.version>1.161.0</vertx-dagger-app-api.version>
+
+    <!--plugins-->
+    <flatten-maven-plugin.version>1.7.0</flatten-maven-plugin.version>
   </properties>
 
   <dependencyManagement>

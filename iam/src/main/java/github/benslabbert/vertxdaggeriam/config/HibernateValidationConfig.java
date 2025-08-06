@@ -3,9 +3,9 @@ package github.benslabbert.vertxdaggeriam.config;
 
 import dagger.Module;
 import dagger.Provides;
+import jakarta.inject.Singleton;
 import jakarta.validation.Validation;
 import jakarta.validation.ValidatorFactory;
-import javax.inject.Singleton;
 import org.hibernate.validator.HibernateValidator;
 
 @Module

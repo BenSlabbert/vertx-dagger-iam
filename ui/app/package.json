@@ -18,7 +18,7 @@
 		"@benslabbert/vertx-dagger-ui-lib": "^1.14.0",
 		"@playwright/test": "^1.54.2",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.27.0",
+		"@sveltejs/kit": "^2.27.1",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@types/eslint": "^9.6.1",
 		"eslint": "^9.32.0",

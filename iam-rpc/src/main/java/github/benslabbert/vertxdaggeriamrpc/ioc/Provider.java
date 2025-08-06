@@ -10,9 +10,9 @@ import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggeriamrpc.service.ServiceModule;
 import github.benslabbert.vertxdaggeriamrpc.verticle.RpcVerticle;
 import io.vertx.core.Vertx;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import jakarta.annotation.Nullable;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
 @Singleton
 @Component(modules = {ServiceModule.class, Provider.EagerModule.class})

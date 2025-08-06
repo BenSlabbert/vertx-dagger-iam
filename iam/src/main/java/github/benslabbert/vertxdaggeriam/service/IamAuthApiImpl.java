@@ -14,9 +14,9 @@ import github.benslabbert.vertxdaggeriam.entity.ACL;
 import github.benslabbert.vertxdaggeriam.entity.User;
 import github.benslabbert.vertxdaggeriam.repository.UserRepository;
 import io.vertx.core.Future;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import java.util.Set;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 @Singleton
 class IamAuthApiImpl implements IamAuthApi {

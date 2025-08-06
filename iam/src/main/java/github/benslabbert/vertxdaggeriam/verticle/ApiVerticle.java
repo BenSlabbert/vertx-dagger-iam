@@ -18,11 +18,12 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.redis.client.RedisAPI;
+import jakarta.inject.Inject;
+import jakarta.inject.Provider;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
-import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,8 +40,11 @@ public class ApiVerticle extends AbstractVerticle {
 
   @Inject
   ApiVerticle(
-      ClosingService closingService, UserHandler userHandler, RedisAPI redisAPI, Config config) {
-    this.closingService = closingService;
+      Provider<ClosingService> closingServiceProvider,
+      UserHandler userHandler,
+      RedisAPI redisAPI,
+      Config config) {
+    this.closingService = closingServiceProvider.get();
     this.userHandler = userHandler;
     this.redisAPI = redisAPI;
     this.config = config;

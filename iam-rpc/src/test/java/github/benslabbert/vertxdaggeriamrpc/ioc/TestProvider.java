@@ -6,7 +6,7 @@ import dagger.Component;
 import github.benslabbert.vertxdaggercommons.config.Config;
 import github.benslabbert.vertxdaggeriamrpc.service.ServiceModule;
 import io.vertx.core.Vertx;
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Singleton
 @Component(modules = {ServiceModule.class, Provider.EagerModule.class})

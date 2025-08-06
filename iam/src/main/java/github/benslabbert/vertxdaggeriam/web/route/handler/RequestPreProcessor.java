@@ -4,12 +4,12 @@ package github.benslabbert.vertxdaggeriam.web.route.handler;
 import github.benslabbert.vertxdaggercommons.web.ResponseWriter;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import jakarta.validation.ConstraintViolation;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 @Singleton
 class RequestPreProcessor {

@@ -5,8 +5,8 @@ import github.benslabbert.vertxdaggerapp.api.rpc.iam.IamRpcService;
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.dto.CheckTokenRequestDto;
 import github.benslabbert.vertxdaggerapp.api.rpc.iam.dto.CheckTokenResponseDto;
 import io.vertx.core.Future;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

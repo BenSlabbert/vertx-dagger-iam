@@ -649,9 +649,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/vite-plugin-svelte@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "@sveltejs/vite-plugin-svelte@npm:5.1.0"
+"@sveltejs/vite-plugin-svelte@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@sveltejs/vite-plugin-svelte@npm:5.1.1"
   dependencies:
     "@sveltejs/vite-plugin-svelte-inspector": "npm:^4.0.1"
     debug: "npm:^4.4.1"
@@ -662,7 +662,7 @@ __metadata:
   peerDependencies:
     svelte: ^5.0.0
     vite: ^6.0.0
-  checksum: 10/5d6abc07e6e024e4abbcc68a56b3f975b9ec53c096c686cb2f22b2130f01cd7385786c1e309103277d791bf791de5aa7135821e392ea5b55a54e6d92e3eea3d0
+  checksum: 10/81ad848edc69fb55f30cedcf4d928eccc1149bfbb661bad3810884aa56a6d0fb81b01ecc7eb8c5ecc3541594d8fba365f61978abd24970e1d06f0c513a64bda3
   languageName: node
   linkType: hard
 
@@ -940,7 +940,7 @@ __metadata:
     "@playwright/test": "npm:^1.54.2"
     "@sveltejs/adapter-static": "npm:^3.0.8"
     "@sveltejs/kit": "npm:^2.27.1"
-    "@sveltejs/vite-plugin-svelte": "npm:^5.1.0"
+    "@sveltejs/vite-plugin-svelte": "npm:^5.1.1"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.32.0"
     eslint-config-prettier: "npm:^10.1.8"
@@ -948,7 +948,7 @@ __metadata:
     globals: "npm:^16.3.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.37.3"
+    svelte: "npm:^5.38.0"
     svelte-check: "npm:^4.3.1"
     vite: "npm:^7.0.6"
     vitest: "npm:^3.2.4"
@@ -1176,19 +1176,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:^4.3.7":
-  version: 4.3.7
-  resolution: "debug@npm:4.3.7"
-  dependencies:
-    ms: "npm:^2.1.3"
-  peerDependenciesMeta:
-    supports-color:
-      optional: true
-  checksum: 10/71168908b9a78227ab29d5d25fe03c5867750e31ce24bf2c44a86efc5af041758bb56569b0a3d48a9b5344c00a24a777e6f4100ed6dfd9534a42c1dde285125a
-  languageName: node
-  linkType: hard
-
-"debug@npm:^4.4.1":
+"debug@npm:^4.3.7, debug@npm:^4.4.1":
   version: 4.4.1
   resolution: "debug@npm:4.4.1"
   dependencies:
@@ -2995,9 +2983,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.37.3":
-  version: 5.37.3
-  resolution: "svelte@npm:5.37.3"
+"svelte@npm:^5.38.0":
+  version: 5.38.0
+  resolution: "svelte@npm:5.38.0"
   dependencies:
     "@ampproject/remapping": "npm:^2.3.0"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3013,7 +3001,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/f8fb32e6012132ba2fa79ebd3811ddff2fca082d6dcf8c90a8e48c7eff49749b682ab57f4df13e0d81e241eb91099d8f7ccd309949c3ba7e8d3076b24989d3f7
+  checksum: 10/94132241d8b13899f811026ed14bf071e8b5c4f87fef36fd7b2e4b99415d32cf9de2941d57998bd3ee2ff93983d58a74b535170fd6c34116b9e028a67010fd82
   languageName: node
   linkType: hard
 
@@ -3252,14 +3240,14 @@ __metadata:
   linkType: hard
 
 "vitefu@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "vitefu@npm:1.0.6"
+  version: 1.1.1
+  resolution: "vitefu@npm:1.1.1"
   peerDependencies:
-    vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+    vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10/88211c17d93b56fbd48e1411e6f087178570d59d27b96610541414208dfbf629b8a9997735bf73a66c0f2862719ed69087759610b2c4ab0fafe7476f882b31e7
+  checksum: 10/bdfb7c009f89c34174636aafb3ff37d909aaac243eaeb291cc3a251ba6fb29264ee7f905d1adce5dcf5b9570f248828cad87f6f6934150086fabeaa771fa51a5
   languageName: node
   linkType: hard
 

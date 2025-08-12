@@ -5,16 +5,6 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@ampproject/remapping@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "@ampproject/remapping@npm:2.3.0"
-  dependencies:
-    "@jridgewell/gen-mapping": "npm:^0.3.5"
-    "@jridgewell/trace-mapping": "npm:^0.3.24"
-  checksum: 10/f3451525379c68a73eb0a1e65247fbf28c0cccd126d93af21c75fceff77773d43c0d4a2d51978fb131aff25b5f2cb41a9fe48cc296e61ae65e679c4f6918b0ab
-  languageName: node
-  linkType: hard
-
 "@benslabbert/vertx-dagger-ui-lib@npm:^1.14.0":
   version: 1.14.0
   resolution: "@benslabbert/vertx-dagger-ui-lib@npm:1.14.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40benslabbert%2Fvertx-dagger-ui-lib%2F1.14.0%2F7cc0204da018611df962dbbdf69fb7c8e8d4f96e"
@@ -356,6 +346,16 @@ __metadata:
     "@jridgewell/sourcemap-codec": "npm:^1.4.10"
     "@jridgewell/trace-mapping": "npm:^0.3.24"
   checksum: 10/81587b3c4dd8e6c60252122937cea0c637486311f4ed208b52b62aae2e7a87598f63ec330e6cd0984af494bfb16d3f0d60d3b21d7e5b4aedd2602ff3fe9d32e2
+  languageName: node
+  linkType: hard
+
+"@jridgewell/remapping@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "@jridgewell/remapping@npm:2.3.4"
+  dependencies:
+    "@jridgewell/gen-mapping": "npm:^0.3.5"
+    "@jridgewell/trace-mapping": "npm:^0.3.24"
+  checksum: 10/9676c556983ea9d52a84107420630cc9a6193cc7cca84803ad9728b242ed4d9cfddb38fad7827ce7e740b0521203f9f3c034226e2350245862a0d63f66038bd7
   languageName: node
   linkType: hard
 
@@ -749,9 +749,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.27.3":
-  version: 2.27.3
-  resolution: "@sveltejs/kit@npm:2.27.3"
+"@sveltejs/kit@npm:^2.28.0":
+  version: 2.28.0
+  resolution: "@sveltejs/kit@npm:2.28.0"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
@@ -772,7 +772,7 @@ __metadata:
     vite: ^5.0.3 || ^6.0.0 || ^7.0.0-beta.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/10023d04d064b230395af87952e5040f1ee88a6fc3487a0267a67a620b497d717f1c4c6c02b61b7136d4c7a80c6578f2b1a5c72f216be84d89a99b399f95fc7f
+  checksum: 10/9587bb0c47226f479031d4e8a998e42d4216814bc5b1c05b6972afcd97f789c74656bb7c87f12bb3e6519e3718d42992cdfde354b8bbe15d428b380a72107869
   languageName: node
   linkType: hard
 
@@ -1086,7 +1086,7 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.54.2"
     "@sveltejs/adapter-static": "npm:^3.0.9"
-    "@sveltejs/kit": "npm:^2.27.3"
+    "@sveltejs/kit": "npm:^2.28.0"
     "@sveltejs/vite-plugin-svelte": "npm:^5.1.1"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.33.0"
@@ -1095,9 +1095,9 @@ __metadata:
     globals: "npm:^16.3.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.38.0"
+    svelte: "npm:^5.38.1"
     svelte-check: "npm:^4.3.1"
-    vite: "npm:^7.1.1"
+    vite: "npm:^7.1.2"
     vitest: "npm:^3.2.4"
   languageName: unknown
   linkType: soft
@@ -3205,11 +3205,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.38.0":
-  version: 5.38.0
-  resolution: "svelte@npm:5.38.0"
+"svelte@npm:^5.38.1":
+  version: 5.38.1
+  resolution: "svelte@npm:5.38.1"
   dependencies:
-    "@ampproject/remapping": "npm:^2.3.0"
+    "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
     "@types/estree": "npm:^1.0.5"
@@ -3223,7 +3223,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/94132241d8b13899f811026ed14bf071e8b5c4f87fef36fd7b2e4b99415d32cf9de2941d57998bd3ee2ff93983d58a74b535170fd6c34116b9e028a67010fd82
+  checksum: 10/e8031f797175bfdb1be01f4f4fb9490b55606522be8d257e54292217a094e11271f8f8a28ce3899ede4ae0a2737564d8b8af4665309aa2ac67f8b119613bca4f
   languageName: node
   linkType: hard
 
@@ -3406,9 +3406,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "vite@npm:7.1.1"
+"vite@npm:^7.1.2":
+  version: 7.1.2
+  resolution: "vite@npm:7.1.2"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.4.6"
@@ -3457,7 +3457,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/42d13cee247410843a1dad3507600f886f8139c9e718a94c2981f0810a6b35a9b78a71b9bae5c375559ea404b22f545ead7d530431629850b4c47c232af06fd5
+  checksum: 10/942188896db181bd5f95c576303eb617cd08580eb129d0223bc87a8ed9b8dc0d60d8487c077fd9a01087c55600af132c5fc677e51b4b48a4a54a376056969edb
   languageName: node
   linkType: hard
 

@@ -749,9 +749,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.30.1":
-  version: 2.30.1
-  resolution: "@sveltejs/kit@npm:2.30.1"
+"@sveltejs/kit@npm:^2.33.0":
+  version: 2.33.0
+  resolution: "@sveltejs/kit@npm:2.33.0"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
@@ -767,12 +767,16 @@ __metadata:
     set-cookie-parser: "npm:^2.6.0"
     sirv: "npm:^3.0.0"
   peerDependencies:
+    "@opentelemetry/api": ^1.0.0
     "@sveltejs/vite-plugin-svelte": ^3.0.0 || ^4.0.0-next.1 || ^5.0.0 || ^6.0.0-next.0
     svelte: ^4.0.0 || ^5.0.0-next.0
     vite: ^5.0.3 || ^6.0.0 || ^7.0.0-beta.0
+  peerDependenciesMeta:
+    "@opentelemetry/api":
+      optional: true
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/2dd60d4ee340eb435f736a125844f9bee12b5ea8a287e09698622f4cc134748a80bf4c989f0c93eabd11a92d0997d048e315274fa63ee3572d088a5375f145ff
+  checksum: 10/6327aae3b36b3920499d6d85d4f571e45026be65cd00ed2a573f3c19c3edd884f302f0b0aab8ef02bd0ffc8d8b41b7f44de9072a46f2e17fcbd8954e713fab43
   languageName: node
   linkType: hard
 
@@ -1086,7 +1090,7 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.54.2"
     "@sveltejs/adapter-static": "npm:^3.0.9"
-    "@sveltejs/kit": "npm:^2.30.1"
+    "@sveltejs/kit": "npm:^2.33.0"
     "@sveltejs/vite-plugin-svelte": "npm:^5.1.1"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.33.0"
@@ -1095,7 +1099,7 @@ __metadata:
     globals: "npm:^16.3.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.38.1"
+    svelte: "npm:^5.38.2"
     svelte-check: "npm:^4.3.1"
     vite: "npm:^7.1.2"
     vitest: "npm:^3.2.4"
@@ -3205,9 +3209,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.38.1":
-  version: 5.38.1
-  resolution: "svelte@npm:5.38.1"
+"svelte@npm:^5.38.2":
+  version: 5.38.2
+  resolution: "svelte@npm:5.38.2"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3223,7 +3227,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/e8031f797175bfdb1be01f4f4fb9490b55606522be8d257e54292217a094e11271f8f8a28ce3899ede4ae0a2737564d8b8af4665309aa2ac67f8b119613bca4f
+  checksum: 10/edb3073ab6a6db07b21f48c96cb9a085e8de6c93d81bd55fdb840ff4e16127d5dd6be038b7fc5cd0fe20df5c2283edfa735050e8dc9e924f1ee80f53013ba98e
   languageName: node
   linkType: hard
 

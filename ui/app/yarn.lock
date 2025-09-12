@@ -1099,7 +1099,7 @@ __metadata:
     globals: "npm:^16.4.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.38.9"
+    svelte: "npm:^5.38.10"
     svelte-check: "npm:^4.3.1"
     vite: "npm:^7.1.5"
     vitest: "npm:^3.2.4"
@@ -3209,9 +3209,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.38.9":
-  version: 5.38.9
-  resolution: "svelte@npm:5.38.9"
+"svelte@npm:^5.38.10":
+  version: 5.38.10
+  resolution: "svelte@npm:5.38.10"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3227,7 +3227,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/6dc75ba9859b65e977fb78cbb6196bf8ce3bea279adddc8bdf0ccf6023574e9c87bf39368493801176b1292353a95cc973fbdcb74042c4754eca653f7eec0bb6
+  checksum: 10/2be80bad3c4f2d066637d6fd31115ac842cd99449f3b5c12666b83492a186915af3ca38a6895eecb83c6c765742e3b67186f4ab38d5c7f89e108b59bbe484326
   languageName: node
   linkType: hard
 

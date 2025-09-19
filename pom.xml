@@ -38,11 +38,11 @@
     <shade.skip>${quickly}</shade.skip>
 
     <!--deps-->
-    <vertx-json-writer.version>1.181.0</vertx-json-writer.version>
-    <vertx-dagger-commons.version>1.217.0</vertx-dagger-commons.version>
-    <vertx-dagger-codegen.version>2.82.0</vertx-dagger-codegen.version>
-    <vertx-dagger-starter.version>1.214.0</vertx-dagger-starter.version>
-    <vertx-dagger-app-api.version>1.186.0</vertx-dagger-app-api.version>
+    <vertx-json-writer.version>1.182.0</vertx-json-writer.version>
+    <vertx-dagger-commons.version>1.218.0</vertx-dagger-commons.version>
+    <vertx-dagger-codegen.version>2.83.0</vertx-dagger-codegen.version>
+    <vertx-dagger-starter.version>1.215.0</vertx-dagger-starter.version>
+    <vertx-dagger-app-api.version>1.187.0</vertx-dagger-app-api.version>
 
     <!--plugins-->
     <flatten-maven-plugin.version>1.7.0</flatten-maven-plugin.version>

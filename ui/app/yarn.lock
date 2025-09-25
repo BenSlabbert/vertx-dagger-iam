@@ -749,9 +749,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^2.43.2":
-  version: 2.43.2
-  resolution: "@sveltejs/kit@npm:2.43.2"
+"@sveltejs/kit@npm:^2.43.4":
+  version: 2.43.4
+  resolution: "@sveltejs/kit@npm:2.43.4"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
@@ -776,7 +776,7 @@ __metadata:
       optional: true
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 10/69332c29c3552af5654d8e5c635c7c44dfa6e471007145258624cb314e626c132a4afc9e9a03e4da43f5a4be97e15ee61d82d84212ae307d2b106788d6db14e7
+  checksum: 10/e1339d4b60636e458bb74392958fe54dd35ac14e58254adeeadb3e1ee3abc55d2ddba9cb4b5aa287eb1eafb42a2d2e18929a1a26051fd53050028f8807c7384e
   languageName: node
   linkType: hard
 
@@ -1090,7 +1090,7 @@ __metadata:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.55.1"
     "@sveltejs/adapter-static": "npm:^3.0.9"
-    "@sveltejs/kit": "npm:^2.43.2"
+    "@sveltejs/kit": "npm:^2.43.4"
     "@sveltejs/vite-plugin-svelte": "npm:^5.1.1"
     "@types/eslint": "npm:^9.6.1"
     eslint: "npm:^9.36.0"
@@ -1099,7 +1099,7 @@ __metadata:
     globals: "npm:^16.4.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.39.5"
+    svelte: "npm:^5.39.6"
     svelte-check: "npm:^4.3.2"
     vite: "npm:^7.1.7"
     vitest: "npm:^3.2.4"
@@ -3209,9 +3209,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.39.5":
-  version: 5.39.5
-  resolution: "svelte@npm:5.39.5"
+"svelte@npm:^5.39.6":
+  version: 5.39.6
+  resolution: "svelte@npm:5.39.6"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -3227,7 +3227,7 @@ __metadata:
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/e8472e9029eb881431e09e1b980914fef2767e13d421560d44ed4395d6ca208317c50f5dd62a4819c3f46978a9f9e99c99d18511b8b4e776f93dfd71ff07d0a4
+  checksum: 10/21543c4666cd77823829a212451de1d84a30c009d82ed3ab9e9f523d00f5b9c43322c38a9c6ec3140dbf00e9ffe7e93eba54211369327712de349b6792012270
   languageName: node
   linkType: hard
 

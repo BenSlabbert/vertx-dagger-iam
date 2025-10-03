@@ -740,12 +740,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-static@npm:^3.0.9":
-  version: 3.0.9
-  resolution: "@sveltejs/adapter-static@npm:3.0.9"
+"@sveltejs/adapter-static@npm:^3.0.10":
+  version: 3.0.10
+  resolution: "@sveltejs/adapter-static@npm:3.0.10"
   peerDependencies:
     "@sveltejs/kit": ^2.0.0
-  checksum: 10/63c96b70b555861e659824280213ab0f0e9232bb6bf54323235c6c3596bcbc22ac6c5285b76e516be60157551313336c1d8eb4f393d510ed533072f9700a2e8c
+  checksum: 10/73d4f859d10fda89eee68857a8a1d9f2ca6e2209bdc99daed9a4230a5f7b724dd82a89465edcde9e8570a78be9e2eae51a6127fd477cd441d5bc2ed49255207b
   languageName: node
   linkType: hard
 
@@ -1089,7 +1089,7 @@ __metadata:
   dependencies:
     "@benslabbert/vertx-dagger-ui-lib": "npm:^1.14.0"
     "@playwright/test": "npm:^1.55.1"
-    "@sveltejs/adapter-static": "npm:^3.0.9"
+    "@sveltejs/adapter-static": "npm:^3.0.10"
     "@sveltejs/kit": "npm:^2.43.7"
     "@sveltejs/vite-plugin-svelte": "npm:^5.1.1"
     "@types/eslint": "npm:^9.6.1"
@@ -1101,7 +1101,7 @@ __metadata:
     prettier-plugin-svelte: "npm:^3.4.0"
     svelte: "npm:^5.39.8"
     svelte-check: "npm:^4.3.2"
-    vite: "npm:^7.1.7"
+    vite: "npm:^7.1.9"
     vitest: "npm:^3.2.4"
   languageName: unknown
   linkType: soft
@@ -3420,9 +3420,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.1.7":
-  version: 7.1.7
-  resolution: "vite@npm:7.1.7"
+"vite@npm:^7.1.9":
+  version: 7.1.9
+  resolution: "vite@npm:7.1.9"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.5.0"
@@ -3471,7 +3471,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/824703387717e1c90fac2e263021bf8ed5cddd5ac14f8c6ee80e54f8351be579869950438accb6daeb1e238f2108fddbadf98ec3cf8b0442f1fd8a25fb0ecab3
+  checksum: 10/361b8dfea414233927761fdb63ec38c2cc4630007efc33a7a02ef9a5c033552c41b2e95f7fcc9acf427da5a3cf194d62dc5f0853bc31e940a13528d0fb180132
   languageName: node
   linkType: hard
 

@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: "actions/checkout@v5"
     - name: "Initialize CodeQL"
-      uses: "github/codeql-action/init@v3"
+      uses: "github/codeql-action/init@v4"
       with:
         languages: "${{ matrix.language }}"
     - name: "Set up JDK 21"
@@ -60,7 +60,7 @@ jobs:
     - run: "make M='mvn -s settings.xml -T 1C' fmtCheck"
     - run: "make M='mvn -s settings.xml -T 1C'"
     - name: "Perform CodeQL Analysis"
-      uses: "github/codeql-action/analyze@v3"
+      uses: "github/codeql-action/analyze@v4"
     - name: "Submit Dependency Snapshot"
       uses: "advanced-security/maven-dependency-submission-action@v5"
       with:

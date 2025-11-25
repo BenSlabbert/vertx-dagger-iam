@@ -958,7 +958,7 @@ __metadata:
     globals: "npm:^16.5.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
-    svelte: "npm:^5.43.14"
+    svelte: "npm:^5.44.0"
     svelte-check: "npm:^4.3.4"
     vite: "npm:^7.2.4"
     vitest: "npm:^4.0.13"
@@ -1201,6 +1201,13 @@ __metadata:
   version: 5.3.2
   resolution: "devalue@npm:5.3.2"
   checksum: 10/2e15e9ed6844e86f1d086088c0f51e447e2300ee385ace02acca4691563ca13e5d0f5445603afc52653609078039c9dad69bd8204dadfac0919fe1ef65f08a88
+  languageName: node
+  linkType: hard
+
+"devalue@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "devalue@npm:5.5.0"
+  checksum: 10/05f6c58b7044d665f1bd7998033354960cc746690998d6f66855d1a29a57b9a686e9b973980d552bcbf6ab4cad13114763cc4ffbe950c2c46b3d9ac39f694d7d
   languageName: node
   linkType: hard
 
@@ -2894,9 +2901,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte@npm:^5.43.14":
-  version: 5.43.14
-  resolution: "svelte@npm:5.43.14"
+"svelte@npm:^5.44.0":
+  version: 5.44.0
+  resolution: "svelte@npm:5.44.0"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
@@ -2906,13 +2913,14 @@ __metadata:
     aria-query: "npm:^5.3.1"
     axobject-query: "npm:^4.1.0"
     clsx: "npm:^2.1.1"
+    devalue: "npm:^5.5.0"
     esm-env: "npm:^1.2.1"
     esrap: "npm:^2.1.0"
     is-reference: "npm:^3.0.3"
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10/76b10e5cb82f8adff210fb778c4bd567f6990cbf80c6f7f17db80f7640f23e60c5c66a724a8c90838e5861c3aae70417651b65cde3b077dc4e912057eb312ac8
+  checksum: 10/a8638b10b162bcc042a366b28f099b2714918d3f136183642c1367bb3163c8e9d4f5b01c077357ca716c69866b6e2a29f1e733252673ac79050496cd50def284
   languageName: node
   linkType: hard
 

@@ -30,7 +30,7 @@
 		"svelte": "^5.46.0",
 		"svelte-check": "^4.3.4",
 		"vite": "^7.3.0",
-		"vitest": "^4.0.15"
+		"vitest": "^4.0.16"
 	},
 	"type": "module",
 	"packageManager": "yarn@4.6.0"
